@@ -1,0 +1,1023 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Compassion Recovery Evidence File</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Layout: an exhibit binder. A narrow index on the left on wide screens, exhibits stacked on the right; one column on a phone. */
+:root{
+  --bg:#F3F5F7; --surface:#FFFFFF; --ink:#14202B; --muted:#55636F; --line:#D9DFE5;
+  --accent:#0F5C8C;            /* evidence links, exhibit numbers */
+  --flag:#B4531A;              /* a finding that needs action */
+  --flag-bg:#FBEFE6;
+  --ok:#2C7A4B; --ok-bg:#E6F3EA;
+  --warn:#8A6A00; --warn-bg:#FAF3D9;
+  --quote-bg:#EEF2F5;
+  --serif:"Newsreader",Georgia,"Times New Roman",serif;
+  --sans:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0F161D; --surface:#17212B; --ink:#E8EDF1; --muted:#9AA8B5; --line:#2A3743;
+    --accent:#6DB6E3; --flag:#F0A271; --flag-bg:#33231A;
+    --ok:#7FD0A0; --ok-bg:#16301F; --warn:#E3C463; --warn-bg:#332B10;
+    --quote-bg:#1E2A35; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0F161D; --surface:#17212B; --ink:#E8EDF1; --muted:#9AA8B5; --line:#2A3743;
+  --accent:#6DB6E3; --flag:#F0A271; --flag-bg:#33231A;
+  --ok:#7FD0A0; --ok-bg:#16301F; --warn:#E3C463; --warn-bg:#332B10;
+  --quote-bg:#1E2A35; color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:16px; line-height:1.55;
+  padding-block:0 64px;
+  padding-left:max(16px, env(safe-area-inset-left, 0px));
+  padding-right:max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap{max-width:1080px;margin:0 auto}
+a{color:var(--accent)}
+a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+code,.mono{font-family:var(--mono);font-size:.86em}
+
+header.top{padding:48px 0 28px;border-bottom:1px solid var(--line)}
+.eyebrow{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:500}
+header.top h1{font-size:clamp(30px,5vw,46px);margin:10px 0 14px}
+header.top p{max-width:68ch;margin:0 0 10px;color:var(--muted)}
+.meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:18px;font-size:13px;color:var(--muted)}
+.meta b{color:var(--ink);font-weight:600}
+
+.layout{display:grid;grid-template-columns:230px minmax(0,1fr);gap:40px;padding-top:28px}
+nav.index{position:sticky;top:16px;align-self:start;font-size:14px}
+nav.index ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:2px}
+nav.index a{display:grid;grid-template-columns:34px 1fr;gap:6px;padding:6px 8px;border-radius:6px;text-decoration:none;color:var(--ink)}
+nav.index a:hover{background:var(--quote-bg)}
+nav.index .n{font-family:var(--mono);color:var(--accent);font-size:12px;padding-top:2px}
+main{min-width:0;display:grid;gap:28px}
+
+.how{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;font-size:15px}
+.how h2{font-size:20px;margin-bottom:8px}
+.how ul{margin:8px 0 0;padding-left:20px;color:var(--muted)}
+.how li{margin:3px 0}
+
+.exhibit{background:var(--surface);border:1px solid var(--line);border-radius:10px;overflow:hidden;scroll-margin-top:16px}
+.exhibit>header{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;padding:18px 20px 14px;border-bottom:1px solid var(--line);align-items:baseline}
+.exhibit .num{font-family:var(--mono);font-size:13px;color:var(--accent);font-weight:500}
+.exhibit h2{font-size:24px}
+.exhibit .pills{grid-column:2;display:flex;flex-wrap:wrap;gap:6px;margin-top:2px}
+.pill{font-size:12px;font-weight:600;padding:2px 9px;border-radius:99px;letter-spacing:.02em;border:1px solid transparent}
+.sev-high{background:var(--flag-bg);color:var(--flag);border-color:var(--flag)}
+.sev-med{background:var(--warn-bg);color:var(--warn);border-color:var(--warn)}
+.sev-low{background:var(--quote-bg);color:var(--muted);border-color:var(--line)}
+.st-ok{background:var(--ok-bg);color:var(--ok);border-color:var(--ok)}
+.body{padding:16px 20px 20px;display:grid;gap:16px}
+.claim{font-size:17px;margin:0}
+.label{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600;margin:0 0 6px}
+.quotes{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.quotes li{background:var(--quote-bg);border-radius:6px;padding:8px 12px;font-family:var(--mono);font-size:13.5px;line-height:1.5;display:grid;gap:2px;min-width:0;overflow-wrap:anywhere}
+.quotes .src{font-family:var(--sans);font-size:12px;color:var(--muted)}
+.shots{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:14px}
+figure{margin:0;min-width:0}
+figure a{display:block;border:1px solid var(--line);border-radius:6px;overflow:hidden;line-height:0}
+figure img{width:100%;height:auto;display:block}
+figcaption{font-size:13px;color:var(--muted);margin-top:6px;line-height:1.4}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:14px}
+.box{border-radius:8px;padding:12px 14px;font-size:15px;min-width:0}
+.box p{margin:0}
+.why{background:var(--flag-bg)}
+.fix{background:var(--ok-bg)}
+.box .label{margin-bottom:4px}
+.caveat{background:var(--warn-bg);border-radius:8px;padding:10px 14px;font-size:14.5px}
+.caveat b{color:var(--warn)}
+.repro{font-size:14px;color:var(--muted)}
+.repro code{background:var(--quote-bg);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+
+table{width:100%;border-collapse:collapse;font-size:14.5px}
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:8px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);background:var(--quote-bg)}
+tr:last-child td{border-bottom:0}
+
+section.plain{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:20px;scroll-margin-top:16px}
+section.plain h2{font-size:24px;margin-bottom:10px}
+section.plain ul{margin:8px 0 0;padding-left:20px}
+section.plain li{margin:5px 0}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:12px 28px}
+footer{margin-top:28px;color:var(--muted);font-size:13px;max-width:80ch}
+
+@media (max-width:860px){
+  .layout{grid-template-columns:minmax(0,1fr)}
+  nav.index{position:static}
+  nav.index ol{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+details.app{border:1px solid var(--line);border-radius:8px;padding:0 14px;margin:0}
+details.app summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-weight:600}
+details.app ul{margin:0 0 14px;padding-left:20px;font-family:var(--mono);font-size:13px;line-height:1.7;overflow-wrap:anywhere}
+
+.totop{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:52px;height:52px;border-radius:50%;border:2px solid var(--bg);background:var(--ink);color:var(--bg);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.totop[hidden]{display:none}
+.totop:active{transform:scale(.96)}
+.totop:focus-visible{outline:3px solid var(--sun,#D87A24);outline-offset:3px}
+</style>
+<style>html{-webkit-text-size-adjust:100%}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+
+<div class="wrap">
+<header class="top">
+  <div class="eyebrow">Elliyeen audit · evidence file</div>
+  <h1>Compassion Recovery Centers: what we found, and where to see it</h1>
+  <p>Every finding in the audit, plus the follow-up checks, is listed here with the exact words on the page, a screenshot, the address of the page, and the fix. All of it was captured from the public website in a normal Chrome browser. Nothing was submitted, and no forms were filled in.</p>
+  <p>This file does not put a dollar figure on any finding. It shows what visitors see and which items may cost calls or trust. Dollar impact needs your call and admissions numbers.</p>
+  <div class="meta">
+    <span><b>Site</b> compassionrecoverycenters.com</span>
+    <span><b>Captured</b> Nov 7, 2026</span>
+    <span><b>Viewport</b> desktop 1192px, plus phone 400px where noted</span>
+    <span><b>Prepared by</b> Elliyeen</span>
+  </div>
+</header>
+
+<div class="layout">
+<nav class="index" aria-label="Exhibits">
+  <div class="eyebrow">Exhibits</div>
+  <ol>
+    <li><a href="#e1"><span class="n">E1</span>Insurance claims conflict</a></li>
+    <li><a href="#e2"><span class="n">E2</span>Headline numbers</a></li>
+    <li><a href="#e3"><span class="n">E3</span>Where care happens</a></li>
+    <li><a href="#e4"><span class="n">E4</span>Phone lines and hours</a></li>
+    <li><a href="#e5"><span class="n">E5</span>Seals and certification</a></li>
+    <li><a href="#e6"><span class="n">E6</span>Clinician titles</a></li>
+    <li><a href="#e7"><span class="n">E7</span>Two Virtual IOP pages</a></li>
+    <li><a href="#e8"><span class="n">E8</span>City and evening pages</a></li>
+    <li><a href="#e9"><span class="n">E9</span>Forms and privacy links</a></li>
+    <li><a href="#e10"><span class="n">E10</span>Homepage FAQ and accessibility</a></li>
+    <li><a href="#e11"><span class="n">E11</span>Official registry check</a></li>
+    <li><a href="#e12"><span class="n">E12</span>Page speed and trackers</a></li>
+    <li><a href="#e13"><span class="n">E13</span>Two competitors</a></li>
+    <li><a href="#e14"><span class="n">E14</span>Still needs you</a></li>
+    <li><a href="#e19"><span class="n">E19</span>Free assessment (urgent)</a></li>
+    <li><a href="#e20"><span class="n">E20</span>Security and exposure</a></li>
+    <li><a href="#e15"><span class="n">E15</span>Hidden links (urgent)</a></li>
+    <li><a href="#e16"><span class="n">E16</span>Mailbox addresses (urgent)</a></li>
+    <li><a href="#e17"><span class="n">E17</span>Broken links</a></li>
+    <li><a href="#e18"><span class="n">E18</span>Full sitemap check</a></li>
+    <li><a href="#a1"><span class="n">A</span>Appendix: full lists</a></li>
+    <li><a href="#working"><span class="n">+</span>What is working</a></li>
+    <li><a href="#corrections"><span class="n">!</span>Our corrections</a></li>
+    <li><a href="#limits"><span class="n">?</span>Not checked yet</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<div class="how">
+  <h2>How to read an exhibit</h2>
+  <ul>
+    <li><b>Claim</b> is the finding in one sentence.</li>
+    <li><b>On the site</b> is the exact wording, copied from the live page. The grey line under each quote says which page it is on.</li>
+    <li><b>Screenshot</b> is what a visitor sees. Click an image to open it full size.</li>
+    <li><b>To see it yourself</b> tells you how to find it in under a minute.</li>
+  </ul>
+</div>
+
+<div class="tablewrap" role="region" aria-label="Summary of findings" tabindex="0">
+<table>
+  <thead><tr><th>Exhibit</th><th>Finding</th><th>Priority</th><th>Evidence</th></tr></thead>
+  <tbody>
+    <tr><td><a href="#e1">E1</a></td><td>Insurance statements disagree with each other</td><td>High</td><td>7 quotes, 3 screenshots</td></tr>
+    <tr><td><a href="#e2">E2</a></td><td>Headline numbers have no stated source; "35 years" vs founded 2019</td><td>High</td><td>Screenshot, About page quote</td></tr>
+    <tr><td><a href="#e3">E3</a></td><td>Laguna Hills, Laguna Beach, San Bernardino and "inpatient" all appear</td><td>High</td><td>5 screenshots</td></tr>
+    <tr><td><a href="#e4">E4</a></td><td>Several phone numbers; one is stated as 9 to 5 on weekdays; hours say 24 hours</td><td>High</td><td>Phone-width screenshot, page code</td></tr>
+    <tr><td><a href="#e5">E5</a></td><td>Seals link to general pages, not to your own listings</td><td>Medium</td><td>Screenshot, link targets</td></tr>
+    <tr><td><a href="#e6">E6</a></td><td>Titles differ between pages; some people are missing from the roster</td><td>Medium</td><td>Screenshot, roster text</td></tr>
+    <tr><td><a href="#e7">E7</a></td><td>Two Virtual IOP pages are live; the older one mentions luxury housing</td><td>Medium</td><td>Screenshot, page settings</td></tr>
+    <tr><td><a href="#e8">E8</a></td><td>Most city pages are unique; 7 pages are word-for-word copies; about 5 are templated</td><td>Medium</td><td>22 pages compared</td></tr>
+    <tr><td><a href="#e9">E9</a></td><td>Insurance pop-up links its Terms and Privacy to a builder-hosted site</td><td>Medium</td><td>Screenshot, link targets</td></tr>
+    <tr><td><a href="#e10">E10</a></td><td>No homepage FAQ; automated scan found 6 kinds of accessibility issue</td><td>Low to medium</td><td>Automated scan (axe-core)</td></tr>
+    <tr><td><a href="#e11">E11</a></td><td>DHCS certificate matches; Joint Commission lists 9 sites; your Locations page shows 2</td><td>Needs your answer</td><td>Official registry records</td></tr>
+    <tr><td><a href="#e12">E12</a></td><td>Fast load in our test; call tracking and analytics tools are present</td><td>Info</td><td>Browser measurements</td></tr>
+    <tr><td><a href="#e13">E13</a></td><td>Two Orange County virtual IOP competitors compared</td><td>Info</td><td>Competitor pages</td></tr>
+    <tr><td><a href="#e20">E20</a></td><td>Email protection has two DMARC records; no browser safety headers; admin plugins and account names are public</td><td>High</td><td>DNS records, page code</td></tr>
+    <tr><td><a href="#e19">E19</a></td><td>The "one minute" free assessment has 23 steps and asks about self-harm with no crisis help</td><td>Urgent</td><td>Screenshots, page code</td></tr>
+    <tr><td><a href="#e15">E15</a></td><td>597 blog pages carry four hidden links to an unrelated company</td><td>Urgent</td><td>Page code, 597 pages</td></tr>
+    <tr><td><a href="#e16">E16</a></td><td>28 city pages list "corporate mailbox" addresses and a different email domain</td><td>Urgent</td><td>Screenshot, page code</td></tr>
+    <tr><td><a href="#e17">E17</a></td><td>333 broken internal links, used 1,818 times on 470 pages</td><td>High</td><td>Screenshot, full crawl</td></tr>
+    <tr><td><a href="#e18">E18</a></td><td>All 1,060 sitemap pages checked: gaps in descriptions, titles, headers</td><td>Medium</td><td>Full crawl</td></tr>
+    <tr><td><a href="#e14">E14</a></td><td>Form tests, call tests, LegitScript and dollar impact</td><td>Needs you</td><td>Not done, with reasons</td></tr>
+  </tbody>
+</table>
+</div>
+
+<!-- E1 -->
+<article class="exhibit" id="e1">
+  <header>
+    <span class="num">E1</span><h2>Insurance statements disagree with each other</h2>
+    <div class="pills"><span class="pill sev-high">High priority</span><span class="pill st-ok">Seen on the live site</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The homepage describes your insurance status in at least six different ways, from "100%" to "most" to "some plans might require an out-of-pocket fee."</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"In network with most insurance and Medicare plans"<span class="src">Homepage, top banner on every page</span></li>
+        <li>"100 Percent In Network Provider"<span class="src">Homepage, blue bar under the banner</span></li>
+        <li>"We're in-network with more than 70 insurers, and we'll tell you exactly what you'd pay before you commit to anything."<span class="src">Homepage, hero paragraph</span></li>
+        <li>"Most of our clients pay $0 out of pocket."<span class="src">Homepage, "If You Have Insurance We Most Likely Take It"</span></li>
+        <li>"Many plans cover the majority of treatment costs, whereas others might require some out-of-pocket fee."<span class="src">Homepage, Step 1 "Insurance verification"</span></li>
+        <li>"We are 100% in Network Provider. Most of our clients pay $0 out of pocket."<span class="src">"Verify Insurance For Free" pop-up</span></li>
+        <li>"We're proud to be in-network with major insurance carriers."<span class="src">Homepage, above the footer</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/hero.jpg" target="_blank" rel="noopener"><img src="img/hero.jpg" alt="Homepage top: banner says 'In network with most insurance and Medicare plans', blue bar says '100 Percent In Network Provider', hero says in-network with more than 70 insurers" loading="lazy"></a><figcaption>Banner, "100 Percent" bar and "more than 70 insurers" on the first screen.</figcaption></figure>
+      <figure><a href="img/insurance-0.jpg" target="_blank" rel="noopener"><img src="img/insurance-0.jpg" alt="Homepage section: 'If you have insurance we most likely take it. Most of our clients pay $0 out of pocket.'" loading="lazy"></a><figcaption>"Most likely take it" and "$0 out of pocket" with carrier logos.</figcaption></figure>
+      <figure><a href="img/popup.jpg" target="_blank" rel="noopener"><img src="img/popup.jpg" alt="Verify Insurance For Free pop-up reading We are 100% in Network Provider" loading="lazy"></a><figcaption>The "Verify Benefits" tab opens this pop-up with "100%".</figcaption></figure>
+    </div>
+    <div class="caveat"><b>Also checked:</b> the homepage text has no mention of Medi-Cal or Medicaid. The Medicare reference is in the banner only.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>A family in crisis reads "100%" and "$0," then reads "some plans might require a fee." Mixed signals slow the first call. Payer-specific claims also need to be backed by your contracts.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Choose one qualified sentence, for example the "tell you exactly what you'd pay" line, and use it everywhere. State Medi-Cal status plainly either way.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> open the homepage, then click the "Verify Benefits" tab on the right edge.</p>
+  </div>
+</article>
+
+<!-- E2 -->
+<article class="exhibit" id="e2">
+  <header>
+    <span class="num">E2</span><h2>Headline numbers have no stated source</h2>
+    <div class="pills"><span class="pill sev-high">High priority</span><span class="pill st-ok">Seen on the live site</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The "By Numbers" strip says 35 years of experience, but the About page says the company was established in 2019. Two of the four labels are unclear.</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"15,000+ Clients Helped" · "35 Years of Experience" · "23 Millions Addicted" · "100% Compassion Guaranteed"<span class="src">Homepage, section "Compassion Recovery Centers By Numbers" (numbers count up as you scroll)</span></li>
+        <li>"Compassion Recovery Centers was established in 2019, nestled in the beautiful Laguna Hills, CA."<span class="src">About page</span></li>
+        <li>Initial page state of each counter is "0" before the animation runs<span class="src">Page code; the same strip appears on the About page</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/counters.jpg" target="_blank" rel="noopener"><img src="img/counters.jpg" alt="Counters reading 15,000+ clients helped, 35 years of experience, 23 millions addicted, 100% compassion guaranteed" loading="lazy"></a><figcaption>The strip after scrolling. Before the animation fires, each counter reads 0.</figcaption></figure>
+    </div>
+    <div class="caveat"><b>Possible explanation:</b> "35 years" may mean combined staff experience. If so, the page should say that. We did not find a source for "15,000+" on the site.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Numbers are the first proof a skeptical visitor looks for. An unexplained figure that conflicts with the About page weakens the rest. A visitor with animations off may see zeros.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Say what each number counts and since when. Reword "23 Millions Addicted" and define "Compassion Guaranteed" or drop it. Show real values without the animation.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> homepage, scroll about two thirds down to "By Numbers." Then open About and find the 2019 sentence.</p>
+  </div>
+</article>
+
+<!-- E3 -->
+<article class="exhibit" id="e3">
+  <header>
+    <span class="num">E3</span><h2>Where care happens is described three ways</h2>
+    <div class="pills"><span class="pill sev-high">High priority</span><span class="pill st-ok">Seen on the live site</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">Your address is in Laguna Hills, but pages also say Laguna Beach and San Bernardino, the San Bernardino page says it serves the Laguna Hills community, and the homepage lists "Inpatient Treatment."</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"Providing compassionate and effective care in-person in Laguna Beach, San Bernardino California and virtual for all California residents."<span class="src">Homepage, "Licensed &amp; Trusted Care"</span></li>
+        <li>"Providing compassionate and effective care in Laguna Beach, California."<span class="src">About page</span></li>
+        <li>"We are proud to serve the Laguna Hills community and the surrounding South Orange County area."<span class="src">San Bernardino page, under "Serving San Bernardino And The Inland Empire"</span></li>
+        <li>"Address: 1830 Commercenter E, San Bernardino, CA 92408 · Hours: Open 24 Hours"<span class="src">San Bernardino page</span></li>
+        <li>"Inpatient Treatment: We work the best inpatient facilities in California so you can trust you're in good hands."<span class="src">Homepage, "Levels of Care"</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/seals-beach.jpg" target="_blank" rel="noopener"><img src="img/seals-beach.jpg" alt="Homepage Licensed and Trusted Care section mentioning Laguna Beach and San Bernardino" loading="lazy"></a><figcaption>Homepage: "Laguna Beach, San Bernardino."</figcaption></figure>
+      <figure><a href="img/about-beach.jpg" target="_blank" rel="noopener"><img src="img/about-beach.jpg" alt="About page: care in Laguna Beach, California, with Call Now button" loading="lazy"></a><figcaption>About page: "Laguna Beach, California."</figcaption></figure>
+      <figure><a href="img/sb-lagunahills.jpg" target="_blank" rel="noopener"><img src="img/sb-lagunahills.jpg" alt="San Bernardino page: facility in the business district, proud to serve the Laguna Hills community" loading="lazy"></a><figcaption>San Bernardino page: copy about Laguna Hills. The map card is titled "Virtual IOP California – Compassion Recovery" with 3 reviews.</figcaption></figure>
+      <figure><a href="img/sb-top.jpg" target="_blank" rel="noopener"><img src="img/sb-top.jpg" alt="San Bernardino page header showing the Laguna Hills address in the top bar" loading="lazy"></a><figcaption>The top bar on the San Bernardino page still shows the Laguna Hills address.</figcaption></figure>
+      <figure><a href="img/inpatient.jpg" target="_blank" rel="noopener"><img src="img/inpatient.jpg" alt="Levels of Care list including Inpatient Treatment" loading="lazy"></a><figcaption>"Inpatient Treatment" next to PHP, IOP and Outpatient.</figcaption></figure>
+    </div>
+    <div class="caveat"><b>Please confirm:</b> the San Bernardino map card shows a different business name than the other pages. We did not verify whether that location is staffed in person.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Visitors and search engines use your address to decide where you are. If the copy disagrees, local search can split between listings. A family may also drive to a place that is not staffed.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Remove "Laguna Beach" unless it is real. Rewrite the San Bernardino copy and header to match that site. Decide whether "Inpatient" belongs, or describe it as a referral service.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> open <code>/about/</code>, <code>/locations/san-bernardino-ca/</code> and the homepage "Licensed &amp; Trusted Care" section.</p>
+  </div>
+</article>
+
+<!-- E4 -->
+<article class="exhibit" id="e4">
+  <header>
+    <span class="num">E4</span><h2>Phone lines and hours do not line up</h2>
+    <div class="pills"><span class="pill sev-high">High priority</span><span class="pill st-ok">Seen on the live site</span><span class="pill sev-med">Needs your answer</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">On a phone, the two big buttons "Call Now" and "Verify Insurance" dial (877) 375-4344. The site describes that number as answered 9 to 5 on weekdays, while the location block says "Open 24 Hours."</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>Header button on every page: (949) 649-4314<span class="src">Page header</span></li>
+        <li>"Phone: (949) 849-4362 · Hours: Open 24 Hours"<span class="src">Homepage, "Our Laguna Hills Location"</span></li>
+        <li>"Call Now" and "Verify Insurance" buttons both link to tel:(877) 375-4344<span class="src">Homepage on a phone; hidden on desktop and tablet by the page layout</span></li>
+        <li>"Call Now | (877) 375-4344"<span class="src">About page, desktop</span></li>
+        <li>"…please call the following telephone number (877) 375-4344 The number can be called during the hours of 9 AM – 5 PM PST Monday through Friday."<span class="src">Homepage, accessibility help statement</span></li>
+        <li>openingHoursSpecification: Monday to Friday, 09:00 to 17:00, on both clinic entries<span class="src">Homepage structured data (what Google reads)</span></li>
+        <li>Also present: (877) 414-3007 as an icon link on the homepage; (909) 314-1097 on the San Bernardino page<span class="src">Page links</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/mobile-buttons.jpg" target="_blank" rel="noopener"><img src="img/mobile-buttons.jpg" alt="Phone-width homepage with blue Call Now and yellow Verify Insurance buttons" loading="lazy"></a><figcaption>Phone width (400px). Both buttons dial (877) 375-4344.</figcaption></figure>
+      <figure><a href="img/location-24h.jpg" target="_blank" rel="noopener"><img src="img/location-24h.jpg" alt="Laguna Hills location block with phone (949) 849-4362 and Hours: Open 24 Hours" loading="lazy"></a><figcaption>Location block: a third number and "Open 24 Hours."</figcaption></figure>
+    </div>
+    <div class="caveat"><b>What we cannot tell from outside:</b> the 9 to 5 sentence sits inside the site's accessibility help statement. The (877) 375-4344 line may be staffed around the clock for admissions. Only you can confirm which line is answered when.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Most visitors on a phone will tap the big button. If that line is not answered at night, a call from someone in crisis goes unanswered. Google may also show 9 to 5 hours, because that is what your structured data says.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Pick one number for "Call Now" that is always answered. Label the others. Make "Open 24 Hours" and the Google hours match what is true.</p></div>
+    </div>
+    <div class="caveat"><b>Call tracking is active.</b> The site runs CallTrackingMetrics. Only (949) 649-4314 is a tracked number (the one in the header, 11 places). It can change by traffic source, so a visitor from an ad may see a different number than we did. The two phone-only buttons for (877) 375-4344 are not tracked, so calls from them may not be counted in your call reports.</div>
+    <p class="repro"><b>To see it yourself:</b> open the homepage in a phone-width window and look under the hero text. The location block is further down the page.</p>
+  </div>
+</article>
+
+<!-- E5 -->
+<article class="exhibit" id="e5">
+  <header>
+    <span class="num">E5</span><h2>Seals link to general pages, not your own listings</h2>
+    <div class="pills"><span class="pill sev-med">Medium priority</span><span class="pill st-ok">Seen on the live site</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">Your strongest trust items are shown as logos. The state certification is specific and checkable. The two seals send visitors to general pages.</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>Joint Commission Gold Seal links to https://www.jointcommission.org/<span class="src">Homepage, "Licensed &amp; Trusted Care"</span></li>
+        <li>LegitScript seal links to https://www.legitscript.com/websites/<span class="src">Homepage, same row</span></li>
+        <li>"Compassion Recovery Centers is certified by the State Department of Health Care Services. State Certification: 300422AP · Effective Date: 01/01/2026 · Expiration Date: 12/31/2027"<span class="src">Footer, every page</span></li>
+        <li>No mention of CARF anywhere on the homepage<span class="src">Text search of the page</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/seals-beach.jpg" target="_blank" rel="noopener"><img src="img/seals-beach.jpg" alt="Joint Commission Gold Seal and LegitScript Certified seal on the homepage" loading="lazy"></a><figcaption>Joint Commission and LegitScript seals, then the DHCS logo to the right.</figcaption></figure>
+    </div>
+    <div class="caveat"><b>Not checked:</b> whether each credential is currently active. This exhibit covers only how the site presents them.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>A seal that goes to a home page cannot be verified in one click. Behavioral health visitors, referrers and payers look for exactly that.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Link each seal to your own verification page or Quality Report. Lead with the DHCS number, which is already the clearest proof you show.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E6 -->
+<article class="exhibit" id="e6">
+  <header>
+    <span class="num">E6</span><h2>Clinician titles differ between pages</h2>
+    <div class="pills"><span class="pill sev-med">Medium priority</span><span class="pill st-ok">Seen on the live site</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The homepage calls Erica Hickel a "Primary Therapist." The About page calls her an "Associate Marriage and Family Therapist." A few clinicians named elsewhere are not on the About roster.</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"Erica Hickel · Primary Therapist" and "Dr. Daryl Sparks · Primary Therapist"<span class="src">Homepage, "The Heart Of Our Expert Care Team"</span></li>
+        <li>"Erica Hickel · Associate Marriage and Family Therapist"<span class="src">About page roster</span></li>
+        <li>Roster order: Joshua Marquez (Founder / CEO), Marco Zahedi MD (Medical Director), Erica Hickel, Dr. Daryl Sparks, Stephanie Kouns (Director of Operations), Avi Sherbill (Breathworks Group Facilitator), Kashif Riaz (SEO Manager), Matthew Macadang (Group Facilitator)<span class="src">About page, "Trusted Professionals" (one more entry appears between Kouns and Sherbill)</span></li>
+        <li>"Dr. Jonathan Haidak · Executive Director" and "John Garcia · Primary Therapist"<span class="src">San Bernardino page; not in the About roster</span></li>
+        <li>"Clinically Reviewed by Dr Michael Majeski"<span class="src">Footer on every page; not in the About roster, no credential shown</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/team.jpg" target="_blank" rel="noopener"><img src="img/team.jpg" alt="Homepage team cards for Erica Hickel and Dr. Daryl Sparks, both titled Primary Therapist" loading="lazy"></a><figcaption>Homepage: both listed as "Primary Therapist."</figcaption></figure>
+    </div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Licensing rules generally require pre-licensed staff to be identified as such (confirm the exact wording with your compliance adviser), and visitors compare pages. "Dr." with no degree shown, and a clinical reviewer with no credentials, invite questions.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Show license type and number for each clinician. Match titles across pages. Add Haidak, Garcia and Majeski to the roster. Move non-clinical staff to a separate "Our team" group.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> compare the homepage team cards with the roster on <code>/about/</code>.</p>
+  </div>
+</article>
+
+<!-- E7 -->
+<article class="exhibit" id="e7">
+  <header>
+    <span class="num">E7</span><h2>Two Virtual IOP pages are live</h2>
+    <div class="pills"><span class="pill sev-med">Medium priority</span><span class="pill st-ok">Seen on the live site</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The newer page is strong. The older page competes with it and includes a luxury housing section that does not fit a program delivered at home.</p>
+    <div class="tablewrap" role="region" aria-label="Comparison of the two Virtual IOP pages" tabindex="0">
+      <table>
+        <thead><tr><th></th><th>/treatment-services/virtual-iop/</th><th>/virtual-iop/</th></tr></thead>
+        <tbody>
+          <tr><td>H1</td><td>"Virtual IOP In California: Online Intensive Outpatient Program"</td><td>"Virtual IOP"</td></tr>
+          <tr><td>Hours per week</td><td>"Most clients take part in about 9 to 15 hours of programming a week."</td><td>Not stated</td></tr>
+          <tr><td>FAQ</td><td>Yes, 9 questions, with FAQ structured data</td><td>No</td></tr>
+          <tr><td>Luxury housing</td><td>No</td><td>"Luxury Housing as a Supportive Environment"</td></tr>
+          <tr><td>Search setting</td><td>Indexable</td><td>Indexable; points to itself as the main version</td></tr>
+          <tr><td>In the sitemap</td><td>Yes</td><td>No (checked all 197 page entries)</td></tr>
+          <tr><td>Links to it (counted on the older page)</td><td>6 links</td><td>2 links</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p class="label">On the older page</p>
+      <ul class="quotes">
+        <li>"Compassion Recovery Centers offers luxury housing options that complement our Virtual IOP… Residents enjoy access to a range of amenities, including gourmet meals, recreational activities, and serene outdoor spaces."<span class="src">/virtual-iop/</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/luxury.jpg" target="_blank" rel="noopener"><img src="img/luxury.jpg" alt="Older Virtual IOP page section titled Luxury Housing as a Supportive Environment" loading="lazy"></a><figcaption>The "Luxury Housing" section on the older page.</figcaption></figure>
+    </div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Two pages for one service split search ranking. A housing promise you may not offer can create a compliance question.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Redirect <code>/virtual-iop/</code> to <code>/treatment-services/virtual-iop/</code>. If housing is real, describe it accurately on a separate page.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E8 -->
+<article class="exhibit" id="e8">
+  <header>
+    <span class="num">E8</span><h2>City and evening pages: three groups to review</h2>
+    <div class="pills"><span class="pill sev-med">Medium priority</span><span class="pill st-ok">22 pages read and compared</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">Many city pages have their own text. Seven others are not copies at all: they redirect to a main page, but they are still listed in the sitemap. About 20 pages are templated or very short.</p>
+    <div class="tablewrap" role="region" aria-label="City and evening page comparison" tabindex="0">
+      <table>
+        <thead><tr><th>Group</th><th>Pages</th><th>What we measured</th></tr></thead>
+        <tbody>
+          <tr><td><b>Unique copy</b></td><td>San Francisco, Sacramento, San Mateo, San Diego, Huntington Beach IOP/PHP, Mission Viejo, Los Angeles PHP, Long Beach depression, virtual outpatient OC</td><td>1,092 to 2,358 words each. Under 10% of phrases shared with any other page.</td></tr>
+          <tr><td><b>Templated</b></td><td>15 pages named virtual-iop-for-substance-abuse-in-{city}-ca (Anaheim, Chula Vista, Fremont, Irvine, Stockton and others), plus Anaheim, Santa Ana, Newport Beach, Huntington Beach (virtual) and Los Angeles virtual IOP</td><td>The 15 average about 2,000 words. Across all 15, 42% to 49% of each page is the same template block, and the rest is unique (10% overlap at most outside the template). The other five share 37% to 69% with each other or with the main Virtual IOP page.</td></tr>
+          <tr><td><b>Very short</b></td><td>3 of 9 sampled mental-health-treatment-in-{city}-ca pages: Hanford, Colton, San Diego</td><td>About 36 words in total and no main heading (rechecked on the full page text). Sampled from 31 pages with this pattern.</td></tr>
+          <tr><td><b>Redirects in the sitemap</b></td><td>evening-iop-california, evening-iop-laguna-hills, two evening addiction pages, virtual-iop-orange-county, online-mental-health-treatment-orange-county and others (18 in all)</td><td>Each sends visitors to a main page (IOP, drug rehab or Virtual IOP). They are not live copies, but they should not be in the sitemap. Our first pass read them as copies because the browser followed the redirect.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"In-Person at Laguna Hills or Virtual Care from Home"<span class="src">/mission-viejo-iop-php/: the local pages describe virtual care, and we found no claim of a local office in the sampled pages</span></li>
+        <li>18 sitemap addresses redirect to another page<span class="src">Full crawl, see E18</span></li>
+      </ul>
+    </div>
+    <div class="caveat"><b>How we measured:</b> we read the main text of each page and counted six-word phrases shared between pairs. This shows overlap, not quality. We did not judge whether each page is helpful to a reader.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Redirecting addresses do not belong in a sitemap. The templated and very short groups carry the real duplicate-content risk.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Remove the 18 redirecting addresses from the sitemap. Rewrite or merge the templated city pages. Fill in or remove the very short ones.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> open <code>/evening-iop-california/</code> and look at the page source for its canonical address.</p>
+  </div>
+</article>
+
+<!-- E9 -->
+<article class="exhibit" id="e9">
+  <header>
+    <span class="num">E9</span><h2>Insurance pop-up links its Terms and Privacy to a builder-hosted site</h2>
+    <div class="pills"><span class="pill sev-med">Medium priority</span><span class="pill st-ok">Seen on the live site</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The "Verify Insurance For Free" pop-up asks for date of birth and member ID. The Terms and Privacy Policy links in its consent line go to <code>asetizdf.elementor.cloud</code>, not to your own domain.</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"I agree to the Terms, Privacy Policy, &amp; communication consent via phone/text/email for insurance/treatment."<span class="src">Pop-up consent line</span></li>
+        <li>Terms → asetizdf.elementor.cloud/terms-of-use/ · Privacy Policy → asetizdf.elementor.cloud/privacy-policy/<span class="src">Link targets in the pop-up</span></li>
+        <li>Footer "Privacy Policy" and "Terms of Use" → compassionrecoverycenters.com/privacy-policy/ and /terms-of-use/<span class="src">Footer; a second, hidden pop-up variant also uses these</span></li>
+        <li>Required fields: Name, Phone, Email, Date of Birth, Insurance Provider, Member/Subscriber ID, consent box<span class="src">Pop-up</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/popup.jpg" target="_blank" rel="noopener"><img src="img/popup.jpg" alt="Verify Insurance For Free pop-up with fields and a consent checkbox" loading="lazy"></a><figcaption>The pop-up. We opened it but did not type anything or submit.</figcaption></figure>
+      <figure><a href="img/about-form.jpg" target="_blank" rel="noopener"><img src="img/about-form.jpg" alt="About page Start Your Recovery form with Policy ID and D.O.B fields marked required" loading="lazy"></a><figcaption>About page form: Insurance, Policy ID and D.O.B. are also required.</figcaption></figure>
+    </div>
+    <div class="caveat"><b>Not checked:</b> the content of those policy pages, and where the form data goes. We did not submit either form.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Consent for health-related data should point to a policy on your own domain that you control. A builder-hosted copy can change or disappear.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Point the pop-up links to your own <code>/privacy-policy/</code> and <code>/terms-of-use/</code>. Consider a shorter first form (name, phone, carrier), with date of birth and member ID asked on the call.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E10 -->
+<article class="exhibit" id="e10">
+  <header>
+    <span class="num">E10</span><h2>Homepage FAQ and accessibility</h2>
+    <div class="pills"><span class="pill sev-low">Low to medium</span><span class="pill st-ok">Automated scan run</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The homepage has no FAQ. An automated accessibility scan of the homepage found six kinds of issue, mostly low contrast on the brand blue.</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>No "FAQ" or "frequently asked" text on the homepage; the main Virtual IOP page has 9 FAQ questions<span class="src">Text search of both pages</span></li>
+        <li>Color contrast: 44 elements. White text on the brand blue (#1d7ccb) measures 4.37 to 1; the lowest is 4.04 to 1. The standard for normal text is 4.5 to 1.<span class="src">axe-core 4.10.2, homepage at desktop width</span></li>
+        <li>3 links with no readable name (an arrow icon link, a linked logo with empty alt text, and one more)<span class="src">Same scan</span></li>
+        <li>1 embedded frame with no title; heading levels skip in 2 places; no "main" landmark<span class="src">Same scan</span></li>
+      </ul>
+    </div>
+    <div class="caveat"><b>Correction:</b> we earlier said 26 images had no alt text. All 26 have an empty alt attribute, which is the correct setting for decorative images, and the scan did not flag them. That claim is withdrawn. One image alt still reads "Compass Recovery Centers."<br><b>Limits:</b> automated tools catch only part of the problems. We did not test with a keyboard or a screen reader, and we did not scan other pages.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Contrast just under the standard makes white-on-blue text harder to read, and some buyers and referrers check accessibility. The homepage also answers none of the usual questions: cost, hours per week, how soon to start.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Darken the brand blue slightly for text buttons (about #1a73bd passes). Name the three links. Add a 6-question homepage FAQ from the Virtual IOP answers.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E11 -->
+<article class="exhibit" id="e11">
+  <header>
+    <span class="num">E11</span><h2>What the official registries say</h2>
+    <div class="pills"><span class="pill sev-med">Needs your answer</span><span class="pill st-ok">Checked in official records</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The state certificate checks out. The Joint Commission lists you, but its record includes eight other sites. Your Locations page lists only Laguna Hills and San Bernardino, and its list of services differs between sites.</p>
+    <div class="tablewrap" role="region" aria-label="Registry results" tabindex="0">
+      <table>
+        <thead><tr><th>Credential</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td><b>DHCS certification</b></td><td><b>Matches.</b> California's open data list (SUD Recovery Treatment Facilities) has application <b>300422AP</b>, type "Certified," legal entity COMPASSION RECOVERY CENTERS LLC, 23141 Moulton Parkway, Laguna Hills 92653, expires <b>12/31/2027</b>, target population "Dual Diagnosis." This matches the footer. The record shows adolescent waiver "No" and lists the phone (855) 444-0130. The 01/01/2026 start date is not in the fields we read.</td></tr>
+          <tr><td><b>Joint Commission</b></td><td><b>Listed.</b> Provider locator record HCO ID 664136, "Compassion Recovery Centers LLC," under the Behavioral Health Care and Human Services program, with your Laguna Hills address, website and (877) 414-3007. We could not see accreditation dates in the public data, so "currently valid" is not fully confirmed.</td></tr>
+          <tr><td><b>LegitScript</b></td><td><b>Not confirmed.</b> The public lookup is a form protected by reCAPTCHA, which we did not bypass. Josh can open the certificate from his LegitScript account.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p class="label">Joint Commission record 664136 lists these 9 sites</p>
+      <ul class="quotes">
+        <li>Laguna Hills, CA: addiction services (adult), substance use day programs and partial hospitalization, virtual (technology-based) services<span class="src">Matches your main site. No child or youth services listed.</span></li>
+        <li>San Bernardino, CA (1830 Commercenter Unit E), operating name "Inner Minds Health": mental health including child and youth, partial hospitalization, virtual. No addiction services listed.<span class="src">Your San Bernardino page says "Mental Health &amp; Addiction Treatment."</span></li>
+        <li>Los Angeles, CA (5240 E Beverly Blvd) · Valencia, CA · Austin, TX · Atlanta, GA · Columbus, OH · Phoenix, AZ · Jacksonville, FL<span class="src">Not on the Locations page. Six have no page on the site, and Los Angeles has only virtual-service pages (checked Nov 7). Four of these list eating disorder services.</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/jc-site.jpg" target="_blank" rel="noopener"><img src="img/jc-site.jpg" alt="Joint Commission provider locator showing Compassion Recovery Centers at 5240 E Beverly Blvd, Los Angeles, under parent Compassion Recovery Centers LLC" loading="lazy"></a><figcaption>Joint Commission locator: a Los Angeles site under the same parent record.</figcaption></figure>
+    </div>
+    <div class="caveat"><b>We are not drawing a conclusion here.</b> Several readings are possible, such as a larger family of sites under one record, or records that need updating. Only Josh knows. Questions to ask: Are all nine sites part of your organization? Is "Inner Minds Health" your San Bernardino operating name? Which sites does the Joint Commission seal on your website cover? Which site delivers the teen program for ages 12 to 17 (the site says one exists), given that the Laguna Hills record lists no youth services?</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>A seal on the website is read as covering the care described next to it. If it covers some sites and services and not others, the page should say which.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Link each seal to the matching record. Add a short "Licenses and accreditations" page listing site, service and number. Keep the registry entries current.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> open <code>jointcommission.org</code> provider locator record 664136, and the DHCS "SUD Recovery Treatment Facilities" dataset, searching for 300422AP.</p>
+  </div>
+</article>
+
+<!-- E12 -->
+<article class="exhibit" id="e12">
+  <header>
+    <span class="num">E12</span><h2>Page speed and tracking tools</h2>
+    <div class="pills"><span class="pill sev-low">Information</span><span class="pill st-ok">Measured in the browser</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The homepage loaded quickly in our test. It also runs many third-party tools, which is worth a privacy review because the insurance form collects health-related details.</p>
+    <div>
+      <p class="label">Measured on the homepage (desktop)</p>
+      <ul class="quotes">
+        <li>Server response 106 ms · page ready 326 ms · fully loaded 1,208 ms<span class="src">Browser timing</span></li>
+        <li>Largest content shown at 352 ms · layout shift 0.002 (good is under 0.1)<span class="src">Browser performance entries</span></li>
+        <li>167 requests, including 52 scripts and 25 style files; 2,103 page elements<span class="src">Resource timing</span></li>
+        <li>Tools loaded: Google Tag Manager and Analytics, Microsoft Clarity, CallTrackingMetrics, LiveChat, Trustindex reviews, Elfsight, accessiBe, Google Ads<span class="src">Script and request hosts</span></li>
+      </ul>
+    </div>
+    <div class="caveat"><b>Limits:</b> this was a repeat visit on a fast desktop connection, so many files were cached. It is not a Lighthouse mobile score. A mobile test on a slower connection may be slower. We did not check what data each tool collects.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Speed is not a problem on the evidence we have. Analytics and session-recording tools on pages with a health intake form deserve a compliance check on what they receive.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Run a mobile speed test. Ask your compliance adviser to review what Clarity, Tag Manager and Ads receive on the pages with forms.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E13 -->
+<article class="exhibit" id="e13">
+  <header>
+    <span class="num">E13</span><h2>Two competitors, side by side</h2>
+    <div class="pills"><span class="pill sev-low">Information</span><span class="pill st-ok">Read from their public pages</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">A snapshot of two Orange County virtual IOP providers. It is not a market study.</p>
+    <div class="tablewrap" role="region" aria-label="Competitor comparison" tabindex="0">
+      <table>
+        <thead><tr><th></th><th>Compassion Recovery</th><th>Northbound</th><th>Meadows Outpatient</th></tr></thead>
+        <tbody>
+          <tr><td>Hours per week</td><td>9 to 15</td><td>6 to 12</td><td>15, with a stated weekly schedule</td></tr>
+          <tr><td>Insurance claim</td><td>Mixed (see E1)</td><td>"15+ plans"; Medicaid not accepted</td><td>"More than 95%" use insurance; Medi-Cal not mentioned</td></tr>
+          <tr><td>Cost approach</td><td>"Tell you exactly what you'd pay"</td><td>Free benefits check; "not a guarantee of payment"</td><td>Free benefits check; no prices</td></tr>
+          <tr><td>Accreditation shown</td><td>Joint Commission, LegitScript, DHCS number</td><td>None; state license number</td><td>Joint Commission and others (badges)</td></tr>
+          <tr><td>Phone</td><td>Several numbers (see E4)</td><td>One number, "24/7" admissions</td><td>One number, no hours stated</td></tr>
+          <tr><td>FAQ</td><td>On program pages; none on homepage</td><td>About 10 questions</td><td>7 questions</td></tr>
+          <tr><td>In-person option in Orange County</td><td>Yes (Laguna Hills)</td><td>Virtual only on that page</td><td>Not stated</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="two">
+      <div class="box why"><p class="label">What stands out</p><p>Your cost promise and in-person option are real strengths. Northbound shows one number with a "24/7" statement and adds a plain "not a guarantee of payment" line. Meadows Outpatient publishes a full weekly schedule.</p></div>
+      <div class="box fix"><p class="label">Take from this</p><p>Add one qualifier line next to the insurance promise. Put a single always-answered number up front. Keep the Medi-Cal answer explicit.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E14 -->
+<article class="exhibit" id="e14">
+  <header>
+    <span class="num">E14</span><h2>Still needs you</h2>
+    <div class="pills"><span class="pill sev-med">Not done, with reasons</span></div>
+  </header>
+  <div class="body">
+    <div class="two">
+      <div class="box why"><p class="label">Form and phone tests</p><p>We did not submit your forms or call your lines. A test would send a lead into your intake system and ring your admissions staff. Josh can run it, or tell us it is fine to send one clearly marked test.</p></div>
+      <div class="box why"><p class="label">LegitScript</p><p>The public lookup is behind a CAPTCHA. Josh can show the certificate.</p></div>
+    </div>
+    <div class="box fix">
+      <p class="label">Dollar impact of missed calls</p>
+      <p>We have no call, admission or revenue figures, so we are not estimating. With three numbers from Josh the estimate is simple: <b>after-hours calls to the (877) 375-4344 buttons per month</b> × <b>share that would have admitted</b> × <b>average revenue per admitted client</b>. Call-tracking reports and phone logs will have the first number.</p>
+    </div>
+    <div class="caveat"><b>Google Business listings:</b> we saw the review cards embedded on your site (Laguna Hills 5.0 from 62 reviews; San Bernardino 5.0 from 3, titled "Virtual IOP California – Compassion Recovery"), while the homepage widget says 48. We did not check the Google profiles themselves, which need the owner's login.</div>
+  </div>
+</article>
+
+<!-- E19 -->
+<article class="exhibit" id="e19">
+  <header>
+    <span class="num">E19</span><h2>The free assessment: "one minute," 23 steps, and no crisis help</h2>
+    <div class="pills"><span class="pill sev-high">Urgent: patient safety</span><span class="pill st-ok">Seen in the live form's code</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The page says the questionnaire "will only take a minute" and offers "three easy steps." The form has 23 steps. One required question asks about thoughts of self-harm. We found no mention of 988, 911 or any crisis line anywhere in the form.</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"Step 1 of 23" · "Step 1: Fill out a quick questionnaire. This will only take a minute." · "in three easy steps"<span class="src">/free-assessment/, first screen</span></li>
+        <li>"Thought that you would be better off dead, or of hurting yourself in some way. (Required)" with answers from "Not at all" to "Nearly every day"<span class="src">Step 20 of 23</span></li>
+        <li>Severe-score result ends: "Please don't face this alone… Help is available — reach out today."<span class="src">Results step. No phone number or crisis line.</span></li>
+        <li>"Compassion Recovery operates entirely online, but U.S. regulations require providers to be licensed in the state where the patient resides."<span class="src">Note under the contact fields. The rest of the site describes in-person care in Laguna Hills.</span></li>
+        <li>"With appointments available within 48 hours."<span class="src">First screen. We could not check this.</span></li>
+      </ul>
+    </div>
+    <div class="tablewrap" role="region" aria-label="The 23 steps" tabindex="0">
+      <table>
+        <thead><tr><th>Steps</th><th>What is asked</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Intro screen</td></tr>
+          <tr><td>2</td><td>Name, age, ZIP code, email, phone (all required, before any question)</td></tr>
+          <tr><td>3</td><td>"What can we help you with today?" with 20 options, from anxiety to alcoholism and opioid abuse</td></tr>
+          <tr><td>4</td><td>"You're in the right place."</td></tr>
+          <tr><td>5 to 11</td><td>Seven anxiety questions, one per screen, each required</td></tr>
+          <tr><td>12 to 20</td><td>Nine depression questions, one per screen, each required, ending with the self-harm question</td></tr>
+          <tr><td>21</td><td>How much symptoms affect work and home</td></tr>
+          <tr><td>22</td><td>Score and result text</td></tr>
+          <tr><td>23</td><td>Date of birth, how you pay, insurance company, ID, group ID, insurance phone</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="shots">
+      <figure><a href="img/assess-intro.jpg" target="_blank" rel="noopener"><img src="img/assess-intro.jpg" alt="Free assessment first screen: Step 1 of 23, 'This will only take a minute'" loading="lazy"></a><figcaption>The first screen.</figcaption></figure>
+      <figure><a href="img/assess-q20.jpg" target="_blank" rel="noopener"><img src="img/assess-q20.jpg" alt="Assessment screen asking about thoughts of being better off dead or hurting yourself, with four answer options and no crisis information" loading="lazy"></a><figcaption>Step 20. We showed this hidden step on our own screen by revealing it in the browser. The progress bar did not update. Nothing was entered or sent.</figcaption></figure>
+    </div>
+    <div class="caveat"><b>How we checked:</b> we read the form's code (23 pages, one form) and searched all of its text for 988, 911, "crisis," "suicide," "emergency" and "lifeline," with no matches. The form's page rules (50 fields with logic) include none that reference the self-harm question. We could not see what happens on the server after an answer is sent, and we did not complete or submit the form. A phone number or alert could exist elsewhere.<br><b>The time:</b> 23 steps with at least one required action each is, in our estimate, three to five minutes. We did not time a person.</div>
+    <div class="caveat"><b>Tracking on this page:</b> Microsoft Clarity, Google Tag Manager, Google Ads, CallTrackingMetrics and LiveChat all load on the form page. We did not check what they receive. Please have your compliance adviser review this.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Someone in crisis may answer "nearly every day" and see no help at that moment. A time claim that is far off can feel misleading and may be reviewed under advertising rules. Asking for contact details before any question may also lose people.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Show "Call or text 988 now" on every step. If the self-harm answer is anything but "Not at all," show 988 and a staffed number at once and alert a person. Make the time claim true, or cut the steps. Ask for contact details after the questions. Have your clinical lead review the form.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> open <code>/free-assessment/</code> and look at the first screen. The step count and time claim are visible there.</p>
+  </div>
+</article>
+
+<!-- E20 -->
+<article class="exhibit" id="e20">
+  <header>
+    <span class="num">E20</span><h2>Security and exposure (public checks only)</h2>
+    <div class="pills"><span class="pill sev-high">High priority</span><span class="pill st-ok">Public records and page code</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">The site's email protection is broken, the server sends no browser safety headers, and the public site data shows powerful plugins and account names. Some items are good. We did not test logins, run attack tools or scan the server.</p>
+    <div class="tablewrap" role="region" aria-label="Security checks" tabindex="0">
+      <table>
+        <thead><tr><th>Check</th><th>Result</th><th>Rating</th></tr></thead>
+        <tbody>
+          <tr><td>DMARC (fake-email protection)</td><td>Two records at _dmarc.compassionrecoverycenters.com. One says p=quarantine with reports to dmarc_rua@onsecureserver.net. The other says p=none with reports to "your-email@compassionrecoverycenters.com," an unfinished template. The rules allow one record, so receivers may ignore both.</td><td>High</td></tr>
+          <tr><td>SPF (allowed senders)</td><td>"v=spf1 include:secureserver.net include:sendgrid.net include:spf.protection.outlook.com -all"</td><td>Good (strict)</td></tr>
+          <tr><td>Mail servers</td><td>One MX record, pointing to Microsoft 365</td><td>Info</td></tr>
+          <tr><td>Lookalike domain</td><td>compassionrecoverycenters.info resolves to two server addresses (162.255.119.98 and 20.157.124.80). Ownership lookup was blocked, and we could not load a page there.</td><td>Needs your answer</td></tr>
+          <tr><td>Browser safety headers</td><td>Not sent: Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options, Content-Security-Policy, Referrer-Policy, Permissions-Policy</td><td>Medium</td></tr>
+          <tr><td>Public plugin list</td><td>The public REST index lists 30 or more namespaces, including code-snippets, string-locator, rankmath, trustindex, elementor, elementor-pro, elementskit and WP Engine plugins</td><td>Medium</td></tr>
+          <tr><td>Public account names</td><td>/wp-json/wp/v2/users lists 2 accounts. The "?author=1" trick is blocked, so hardening is uneven.</td><td>Medium</td></tr>
+          <tr><td>Software seen in page code</td><td>Elementor 4.1.3 · Elementor Pro 3.34.3 · ElementsKit Lite 4.1.0 · Gravity Forms 2.10.5 · jQuery 3.7.1 · jQuery Migrate 3.4.1 · theme Hello Elementor · Site Kit 1.181.0</td><td>Not compared with bug lists</td></tr>
+          <tr><td>Outside scripts</td><td>15 on the homepage, none with a tamper-check (integrity) attribute</td><td>Low</td></tr>
+          <tr><td>Tracking on the assessment page</td><td>Microsoft Clarity, Google Tag Manager, Google Ads, CallTrackingMetrics, LiveChat</td><td>High (see E19)</td></tr>
+          <tr><td>Security contact file</td><td>/.well-known/security.txt returns 404</td><td>Low</td></tr>
+          <tr><td>HTTP to HTTPS</td><td>An http:// visit ends on https://</td><td>Good</td></tr>
+          <tr><td>Doors that are closed</td><td>xmlrpc.php and readme.html return 403; /wp-content/uploads/ shows no folder listing (403)</td><td>Good</td></tr>
+          <tr><td>Suspicious script patterns</td><td>No eval, atob, fromCharCode or document.write in the homepage inline scripts</td><td>Good (homepage only)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="caveat"><b>A lead for the hidden links (E15):</b> Code Snippets and String Locator are both installed. Code Snippets can add output to pages, and String Locator can search and replace across files, which could also explain the mangled links in E17. These are leads, not conclusions. We cannot see inside the admin area.<br><b>Not tested:</b> admin two-step login, backups, user and vendor access, plugin versions against known bugs, the server, TLS settings, and any active testing. Active testing needs Josh's written permission.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>A treatment center's name is easy to fake in email, and patients may trust a message that looks real. Missing headers and an open plugin list make an attacker's first steps easier.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Keep one DMARC record with a real report address. Turn on two-step login for every admin, remove unused plugins and hide the public account list. Add the safety headers at the host or Cloudflare. Check the Code Snippets list and the user list.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> look up the TXT record for <code>_dmarc.compassionrecoverycenters.com</code> with any public DNS tool.</p>
+  </div>
+</article>
+
+<!-- E15 -->
+<article class="exhibit" id="e15">
+  <header>
+    <span class="num">E15</span><h2>Hidden links to an unrelated company on 597 blog pages</h2>
+    <div class="pills"><span class="pill sev-high">Urgent</span><span class="pill st-ok">Seen in page code on 597 pages</span><span class="pill sev-med">Cause unknown</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">597 of the 599 blog pages contain four links to getuniqcli.com. The page code hides them so visitors cannot see them. They appear on no other kind of page.</p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>Link text: "Uniqcli Mission Critical IT Procurement" · "Uniqcli Full IT Hardware Catalog" · "Uniqcli Federal &amp; Enterprise Solutions" · "Request a Quote from Uniqcli"<span class="src">Same four links on each blog page, in the blog page template</span></li>
+        <li>style="display:none !important; visibility:hidden !important; position:absolute !important; left:-9999px !important; width:0 !important; height:0 !important; overflow:hidden !important; font-size:0 !important; line-height:0 !important; opacity:0 !important;"<span class="src">The code around the four links, checked on /blogs/top-rated-virtual-iop-programs-serving-orange-county-residents/</span></li>
+        <li>597 of 599 blog pages. 0 of the other 461 pages we crawled.<span class="src">Full crawl of all four sitemaps. <a href="#a1">Full list: A1</a></span></li>
+      </ul>
+    </div>
+    <div class="caveat"><b>What we do not know:</b> who added them or why. The company describes itself as an IT hardware seller in its own link text, and we did not research it. Possible causes include a site break-in, a plugin or template change, or an undisclosed paid-link arrangement. Only the people who manage your site can tell.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Links hidden from people but readable by search engines break Google's spam rules and can lower your ranking. If someone changed your site without your knowledge, it is also a security problem.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Ask who manages the site and the search work. Find what adds the block to the blog template and remove it. Check who has admin access, which plugins changed recently, and Google Search Console for security or manual-action notices.</p></div>
+    </div>
+    <p class="repro"><b>To see it yourself:</b> open any blog page, choose "View source," and search for <code>getuniqcli</code>.</p>
+  </div>
+</article>
+
+<!-- E16 -->
+<article class="exhibit" id="e16">
+  <header>
+    <span class="num">E16</span><h2>"Corporate mailbox" addresses and a different email domain</h2>
+    <div class="pills"><span class="pill sev-high">Urgent</span><span class="pill st-ok">Seen on the live site</span><span class="pill sev-med">Cause unknown</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">28 city pages, 16 Spanish and 12 English, list "corporate mailbox" addresses in towns where no office is described. 27 of them show a (714) 909-2201 phone number, and 14 show email addresses at compassionrecoverycenters.info with names that start "backlinks." <a href="#a2">Full list: A2</a></p>
+    <div>
+      <p class="label">On the site</p>
+      <ul class="quotes">
+        <li>"Buzón Corporativo De Compassion Recovery Centers Santa Rosa · 1264 Mendocino Ave Santa Rosa California 95402 · (714) 909-2201 · backlinks9@compassionrecoverycenters.info"<span class="src">/tratamiento-de-salud-mental-en-santa-rosa-ca/, visible on the page with a map</span></li>
+        <li>Other mailbox addresses in page data: 4949 Yosemite Blvd, Empire · 2000 Jubilee Ct, San Bernardino · 305 F St, Eureka · 8225 Arroyo Cir, Gilroy · 2053 Landings Dr, Mountain View<span class="src">Structured data on the first 27 pages we measured. 16 different addresses in all.</span></li>
+        <li>Seven different emails: backlinks7, 8, 9, 10, 14, 15 and 16 at compassionrecoverycenters.info<span class="src">Page code. The mailbox heading is visible in the text of 21 of the 28 pages.</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/santarosa.jpg" target="_blank" rel="noopener"><img src="img/santarosa.jpg" alt="Spanish Santa Rosa page showing Buzón Corporativo, an address, a 714 phone number and a backlinks9 email address" loading="lazy"></a><figcaption>The Santa Rosa page as a visitor sees it.</figcaption></figure>
+    </div>
+    <div class="caveat"><b>What we do not know:</b> who added these or whether you own the .info domain. We did not contact any of the addresses.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Mailbox addresses are not offices. Listing them as places can look like fake locations to search engines and to people who check. The email name "backlinks" suggests a search-ranking tactic.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Find out who added them. Remove any address that is not a real site you run. Check who owns compassionrecoverycenters.info.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E17 -->
+<article class="exhibit" id="e17">
+  <header>
+    <span class="num">E17</span><h2>333 broken internal links</h2>
+    <div class="pills"><span class="pill sev-high">High priority</span><span class="pill st-ok">Full crawl</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">1,818 links on 470 pages lead to a "Page Can't Be Found" error. Your main pages are clean. The problem is in the blog.</p>
+    <div class="tablewrap" role="region" aria-label="Broken links summary" tabindex="0">
+      <table>
+        <thead><tr><th>Measure</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Different broken addresses</td><td>333 (215 ordinary, 118 with a broken web address)</td></tr>
+          <tr><td>Times they are linked</td><td>1,818 (793 of them the broken-address kind)</td></tr>
+          <tr><td>Pages affected</td><td>470: 448 blog pages, 18 pages, 4 posts</td></tr>
+          <tr><td>Key pages checked</td><td>Home, About, Contact, Admissions, Virtual IOP, Treatment Services, Locations, What We Treat, Who We Help: 0 broken links each</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p class="label">Most-linked broken addresses</p>
+      <ul class="quotes">
+        <li>/blogs/combating-zoom-fatigue-in-virtual-therapy-and-support-groups/<span class="src">Linked 99 times</span></li>
+        <li>/treatment-services/medication-assisted-treatment/<span class="src">Linked 95 times. Your About page lists medication management as a service.</span></li>
+        <li>/treatment-services/virtual-couples-counseling/ (68) · /treatment-services/online-cbt-therapy/ (60) · /treatment-services/mat-treatment-online/ (44) · /treatment-services/telehealth-addiction-treatment/ (43)<span class="src">Linked from blog pages</span></li>
+        <li>/httpsionrecoverycenters.com/treatment-services/virtual-iop/ (86) and 117 similar<span class="src">The "https://compassion" part of the address is missing, which looks like a bulk find-and-replace error</span></li>
+      </ul>
+    </div>
+    <div class="shots">
+      <figure><a href="img/broken404.jpg" target="_blank" rel="noopener"><img src="img/broken404.jpg" alt="Page Can't Be Found message at the medication-assisted-treatment address" loading="lazy"></a><figcaption>One of the broken addresses, linked from 95 pages.</figcaption></figure>
+    </div>
+    <p class="repro"><a href="#a3">Full lists and folder breakdown: A3</a></p>
+    <div class="caveat"><b>How we measured:</b> we read every sitemap page as delivered by the server and tested each internal link target that was not itself in the sitemap. Links added by scripts after the page loads were not counted.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Visitors who click end on an error page, and search engines read many broken links as a site that is not looked after.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Repair the 118 broken web addresses with one bulk fix. For the rest, point each link to the right page or redirect the old address. Start with the five most-linked.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- E18 -->
+<article class="exhibit" id="e18">
+  <header>
+    <span class="num">E18</span><h2>Full sitemap check</h2>
+    <div class="pills"><span class="pill sev-med">Medium priority</span><span class="pill st-ok">All 1,060 pages read</span></div>
+  </header>
+  <div class="body">
+    <p class="claim">Your sitemap lists about 1,060 pages, not 197. <a href="#a4">Full lists: A4</a> Every page loads, but many lack descriptions, and several signals disagree.</p>
+    <div class="tablewrap" role="region" aria-label="Sitemap findings" tabindex="0">
+      <table>
+        <thead><tr><th>Check</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>Sitemaps and size</td><td>Pages 191 (plus 6 image or file entries) · Blog 599 · Posts 256 · Categories 14 · Locations file 1</td></tr>
+          <tr><td>Do pages load?</td><td>Yes. No error pages in the sitemap.</td></tr>
+          <tr><td>Redirecting addresses in the sitemap</td><td>18. They send visitors to another page and should be removed.</td></tr>
+          <tr><td>Blocked from search but listed</td><td>1: /virtual-iop-program/ is set to "noindex" yet appears in the sitemap.</td></tr>
+          <tr><td>Wrong "main version" tags</td><td>0 found</td></tr>
+          <tr><td>No meta description</td><td>616 pages, including 594 of 599 blog pages. <a href="#a4">List: A4</a></td></tr>
+          <tr><td>Titles over 60 characters</td><td>533 pages (likely cut off in search results)</td></tr>
+          <tr><td>Heading problems</td><td>21 pages with more than one main heading, 8 with none</td></tr>
+          <tr><td>Address spelling</td><td>"Moulton Pky" in the footer on 1,055 pages, against "Pkwy" elsewhere</td></tr>
+          <tr><td>Name typo</td><td>"Compass Recovery" in the code of 41 pages</td></tr>
+          <tr><td>"Laguna Beach" in page text</td><td>25 pages</td></tr>
+          <tr><td>Pages with no link from another crawled page</td><td>639 (524 blog). This reads server pages only, so some may be linked by scripts.</td></tr>
+          <tr><td>Internal links that pass through a redirect</td><td>144 addresses</td></tr>
+          <tr><td>Publishing pattern</td><td>572 of 599 blog pages carry the same last-changed date, July 11, 2025</td></tr>
+          <tr><td>Insurance pop-up code</td><td>On every page, including links to the builder-hosted privacy pages (E9)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <p class="label">Other checks</p>
+      <ul class="quotes">
+        <li>The server sends none of the usual safety headers we looked for: Strict-Transport-Security, X-Content-Type-Options, X-Frame-Options, Content-Security-Policy, Referrer-Policy<span class="src">Homepage response headers</span></li>
+        <li>The public author list at /wp-json/wp/v2/users shows two account names<span class="src">Common on WordPress sites, but it helps anyone guessing a login</span></li>
+        <li>Good: robots.txt is correct, the 404 page works, the login-file and readme addresses are blocked, and llms.txt is live<span class="src">Direct requests</span></li>
+      </ul>
+    </div>
+    <div class="caveat"><b>Blog pages:</b> 599 pages under /blogs/ is a large set. In a sample of 30, 22 had 2,300 to 4,700 words of their own with under 5% shared text. For 8 our method found only 40 to 150 words, but our test reads paragraphs only, so we cannot call them thin. Several target towns far from your offices (for example Lake Los Angeles, Baldwin Park, McKinleyville) or name other organizations such as Kaiser Permanente and a university. We did not judge those pages.</div>
+    <div class="two">
+      <div class="box why"><p class="label">Why it matters</p><p>Missing descriptions and long titles make search results look unfinished. Mixed signals, such as a noindex page in the sitemap, make search engines less sure which pages to trust.</p></div>
+      <div class="box fix"><p class="label">Fix</p><p>Write descriptions for the blog in bulk, shorten titles, clean the sitemap (redirects and noindex), fix the address spelling in the footer, and add the safety headers at your host or Cloudflare.</p></div>
+    </div>
+  </div>
+</article>
+
+<!-- APPENDIX -->
+<article class="exhibit" id="a1">
+  <header><span class="num">A1</span><h2>Hidden-link pages</h2><div class="pills"><span class="pill st-ok">Full crawl, Nov 7 2026</span></div></header>
+  <div class="body">
+    <p class="claim">Every live blog page carries the four hidden getuniqcli.com links. The only two blog addresses without them are redirects.</p>
+    <div class="tablewrap" role="region" aria-label="Hidden links by sitemap" tabindex="0"><table>
+      <thead><tr><th>Sitemap</th><th>Pages</th><th>With hidden links</th></tr></thead>
+      <tbody><tr><td>blog</td><td>599</td><td><b>597</b></td></tr><tr><td>page</td><td>191</td><td>0</td></tr><tr><td>post</td><td>256</td><td>0</td></tr><tr><td>category</td><td>14</td><td>0</td></tr></tbody></table></div>
+    <details class="app"><summary>The 2 blog addresses without them (both redirect to /treatment-services/virtual-iop/)</summary><ul><li>/blogs/orange-county-rehab-goes-online-the-power-of-virtual-iop/</li><li>/blogs/the-top-virtual-iop-programs-serving-laguna-beach-ca/</li></ul></details>
+    <p class="repro"><b>How we tested:</b> for each page we looked for an element styled with <code>left:-9999px</code> that contains a link to getuniqcli.com. <b>To check one:</b> view source on any /blogs/ page and search for <code>getuniqcli</code>.</p>
+  </div>
+</article>
+
+<article class="exhibit" id="a2">
+  <header><span class="num">A2</span><h2>Mailbox-address pages</h2><div class="pills"><span class="pill st-ok">Full crawl, Nov 7 2026</span></div></header>
+  <div class="body">
+    <p class="claim">28 pages contain the words "Corporate Mailbox" or "Buzón corporativo." 27 show (714) 909-2201. 14 show a @compassionrecoverycenters.info email. 21 show the heading in visible text.</p>
+    <details class="app"><summary>12 English pages</summary><ul>
+      <li>/mental-health-treatment-in-gilroy-ca/</li><li>/mental-health-treatment-in-santa-rosa-ca/</li><li>/mental-health-treatment-in-markleeville-ca/</li><li>/mental-health-treatment-in-empire-ca/</li><li>/mental-health-treatment-in-san-bernardino-ca/</li><li>/mental-health-treatment-in-hanford-ca/</li><li>/mental-health-treatment-in-colton-ca/</li><li>/mental-health-treatment-in-alhambra-ca/</li><li>/mental-health-treatment-in-san-diego-ca/</li><li>/substance-abuse-treatment-in-san-francisco-ca/</li><li>/substance-abuse-treatment-in-redlands-ca/</li><li>/substance-abuse-treatment-in-long-beach-ca/</li></ul></details>
+    <details class="app"><summary>16 Spanish pages</summary><ul>
+      <li>/tratamiento-de-salud-mental-en-empire-ca/</li><li>/tratamiento-de-salud-mental-en-santa-rosa-ca/</li><li>/tratamiento-de-abuso-de-sustancias-en-san-francisco-ca/</li><li>/tratamiento-de-abuso-de-sustancias-en-long-beach-ca/</li><li>/tratamiento-de-salud-mental-en-san-bernardino-ca/</li><li>/tratamiento-de-salud-mental-en-san-diego-ca/</li><li>/tratamiento-de-salud-mental-en-gilroy-ca/</li><li>/tratamiento-de-salud-mental-en-mountain-view-ca/</li><li>/tratamiento-de-salud-mental-en-eureka-ca/</li><li>/tratamiento-de-salud-mental-en-hanford-ca/</li><li>/tratamiento-de-salud-mental-en-colton-ca/</li><li>/tratamiento-de-salud-mental-en-alhambra-ca/</li><li>/tratamiento-de-salud-mental-en-markleeville-ca/</li><li>/tratamiento-del-abuso-de-sustancias-en-whitethorn-ca/</li><li>/tratamiento-de-abuso-de-sustancias-en-redlands-ca/</li><li>/tratamiento-de-abuso-de-sustancias-en-indian-wells-ca/</li></ul></details>
+    <details class="app"><summary>Mailbox addresses seen in page data (examples)</summary><ul>
+      <li>1264 Mendocino Ave, Santa Rosa 95402</li><li>4949 Yosemite Blvd, Empire 95319</li><li>2000 Jubilee Ct, San Bernardino 92411</li><li>305 F St, Eureka 95501</li><li>8225 Arroyo Cir, Gilroy 95020</li><li>2053 Landings Dr, Mountain View 94043</li><li>610 Old Mason St, San Francisco 94129</li><li>3490 E 7th St, Long Beach 90804</li><li>8949 Ware Ct, San Diego 92121 (800) 892-2253</li></ul></details>
+    <p class="repro"><b>To check one:</b> open /tratamiento-de-salud-mental-en-santa-rosa-ca/ and scroll to "Buzón Corporativo."</p>
+  </div>
+</article>
+
+<article class="exhibit" id="a3">
+  <header><span class="num">A3</span><h2>Broken-link lists</h2><div class="pills"><span class="pill st-ok">Full crawl, Nov 7 2026</span></div></header>
+  <div class="body">
+    <p class="claim">333 internal addresses return "Page Not Found." They are linked 1,818 times from 470 pages: 448 blog pages, 18 pages and 4 posts. 215 are ordinary addresses and 118 have a broken web address.</p>
+    <div class="tablewrap" role="region" aria-label="Broken links by folder" tabindex="0"><table>
+      <thead><tr><th>Folder of the broken address</th><th>Addresses</th><th>Times linked</th></tr></thead>
+      <tbody>
+        <tr><td>/treatment-services/</td><td>82</td><td>503</td></tr>
+        <tr><td>top level</td><td>55</td><td>241</td></tr>
+        <tr><td>/blogs/</td><td>36</td><td>208</td></tr>
+        <tr><td>/what-we-treat/</td><td>26</td><td>55</td></tr>
+        <tr><td>/services/, /blog/, /locations/, /service-area/, /mental-health/, /company/, /therapy-services/</td><td>16</td><td>18</td></tr>
+        <tr><td><b>Ordinary total</b></td><td><b>215</b></td><td><b>1,025</b></td></tr>
+        <tr><td><b>Broken web address (starts /httpsionrecoverycenters.com/)</b></td><td><b>118</b></td><td><b>793</b></td></tr>
+      </tbody></table></div>
+    <details class="app"><summary>The 48 most-linked ordinary broken addresses</summary><ul>
+      <li>/blogs/combating-zoom-fatigue-in-virtual-therapy-and-support-groups/ &middot; 99</li><li>/treatment-services/medication-assisted-treatment/ &middot; 95</li><li>/treatment-services/virtual-couples-counseling/ &middot; 68</li><li>/treatment-services/online-cbt-therapy/ &middot; 60</li><li>/treatment-services/mat-treatment-online/ &middot; 44</li><li>/treatment-services/telehealth-addiction-treatment/ &middot; 43</li><li>/virtual-rehab-california/ &middot; 38</li><li>/remote-drug-rehab-orange-county/ &middot; 37</li><li>/blogs/online-cbt-therapy/ &middot; 27</li><li>/telehealth-addiction-treatment/ &middot; 23</li><li>/orange-county-iop/ &middot; 20</li><li>/treatment-services/couples-counseling/ &middot; 20</li><li>/mat-treatment-online/ &middot; 16</li><li>/start-your-recovery-journey-today/ &middot; 15</li><li>/treatment-services/mat-treatment/ &middot; 15</li><li>/treatment-services/remote-iop/ &middot; 15</li><li>/online-cbt-therapy/ &middot; 14</li><li>/blogs/virtual-rehab-california/ &middot; 12</li><li>/blogs/telehealth-addiction-treatment/ &middot; 12</li><li>/treatment-services/medication-assisted-treatment-mat/ &middot; 12</li><li>/virtual-couples-counseling-rehab/ &middot; 11</li><li>/what-we-treat/substance-abuse/opioid-abuse/ &middot; 10</li><li>/treatment-services/virtual-rehab-california/ &middot; 10</li><li>/blogs/virtual-couples-counseling-rehab/ &middot; 10</li><li>/treatment-services/remote-drug-rehab-orange-county/ &middot; 9</li><li>/blogs/importance-of-routine-in-early-recovery/ &middot; 8</li><li>/what-we-treat/mental-health/ptsd-trauma/ &middot; 7</li><li>/what-we-treat/mental-health/bipolar-disorder/ &middot; 7</li><li>/treatment-services/mat-program/ &middot; 7</li><li>/treatment-services/couples-rehab/ &middot; 7</li><li>/remote-iop/ &middot; 6</li><li>/treatment-services/couples-therapy/ &middot; 6</li><li>/treatment-services/family-program/ &middot; 6</li><li>/treatment-services/cbt-therapy/ &middot; 5</li><li>/blogs/ &middot; 5</li><li>/blogs/remote-drug-rehab-orange-county/ &middot; 5</li><li>/blogs/mat-treatment-online/ &middot; 5</li><li>/treatment-services/couples-family-therapy/ &middot; 5</li><li>/what-we-treat/mental-health/add-adhd/ &middot; 4</li><li>/what-we-treat/mental-health/eating-disorders/ &middot; 4</li><li>/get-help-for-substance-abuse/ &middot; 4</li><li>/index.html &middot; 3</li><li>/treatment-services/cbt/ &middot; 3</li><li>/treatment-services/couples-counseling-rehab/ &middot; 3</li><li>/remote-iop-california/ &middot; 3</li><li>/orange-county-iop-php-program/ &middot; 2</li><li>/family-program/ &middot; 2</li></ul></details>
+    <details class="app"><summary>The 24 most-linked broken-web-address links (the "/httpsionrecoverycenters.com/" ones)</summary><ul>
+      <li>&hellip;/treatment-services/virtual-iop/ &middot; 86</li><li>&hellip;/treatment-services/dual-diagnosis/ &middot; 72</li><li>&hellip;/what-we-treat/substance-abuse/drug-rehab/ &middot; 43</li><li>&hellip;/what-we-treat/mental-health/ &middot; 42</li><li>&hellip;/treatment-services/outpatient-detox/ &middot; 42</li><li>&hellip;/treatment-services/intensive-outpatient-program/ &middot; 27</li><li>&hellip;/what-we-treat/substance-abuse/alcohol-rehab/ &middot; 26</li><li>&hellip;/treatment-services/partial-hospitalization/ &middot; 22</li><li>&hellip;/blogs/how-effective-is-telehealth-for-substance-abuse-treatment/ &middot; 21</li><li>&hellip;/blogs/evidence-based-therapies-for-addiction-recovery-a-beginner-guide/ &middot; 17</li><li>&hellip;/treatment-services/virtual-couples-counseling-rehab/ &middot; 14</li><li>&hellip;/blogs/how-therapy-helps-psychotherapy-approaches-for-addiction-and-mental-health/ &middot; 13</li><li>&hellip;/blogs/building-a-sober-support-network-how-to-find-your-tribe/ &middot; 12</li><li>&hellip;/blogs/accessibility-in-recovery-how-virtual-treatment-reaches-underserved-communities/ &middot; 12</li><li>&hellip;/ (the home page) &middot; 10</li><li>&hellip;/blogs/top-10-benefits-of-virtual-rehab-for-addiction-recovery/ &middot; 10</li><li>&hellip;/blogs/how-virtual-iop-fits-into-a-busy-schedule-flexibility-for-parents-and-professionals/ &middot; 10</li><li>&hellip;/blogs/what-to-pack-and-prepare-for-virtual-rehab-setting-yourself-up-at-home/ &middot; 10</li><li>&hellip;/treatment-services/virtual-couples-counseling/ &middot; 9</li><li>&hellip;/blogs/staying-accountable-in-a-virtual-program-tips-for-progress/ &middot; 9</li><li>&hellip;/treatment-services/social-media-addiction-treatment/ &middot; 9</li><li>&hellip;/blogs/understanding-california-a-parity-laws-insurance-coverage-for-addiction-treatment/ &middot; 9</li><li>&hellip;/blogs/rebuilding-trust-after-addiction-guidance-for-families-and-partners/ &middot; 9</li><li>&hellip;/blogs/questions-to-ask-before-enrolling-in-an-online-iop-or-rehab-program/ &middot; 9</li></ul></details>
+    <div class="caveat"><b>Also seen:</b> four old addresses under /blog/ (for example /blog/understanding-mood-disorders-an-overview) returned a server timeout (504) this time, not a 404. We left them out of the 333. <b>Key pages:</b> the homepage, About, Contact, Admissions, Virtual IOP, Treatment Services, Locations, What We Treat and Who We Help each have 0 broken links.</div>
+    <p class="repro"><b>How we tested:</b> every page in the four sitemaps was read as delivered by the server. We collected each internal link, then requested every link target not already in the sitemap. A 404 response counts as broken. Links added by scripts after load are not counted.</p>
+  </div>
+</article>
+
+<article class="exhibit" id="a4">
+  <header><span class="num">A4</span><h2>Sitemap lists</h2><div class="pills"><span class="pill st-ok">Full crawl, Nov 7 2026</span></div></header>
+  <div class="body">
+    <p class="claim">The lists behind the sitemap numbers in E18.</p>
+    <div class="tablewrap" role="region" aria-label="Pages without a description" tabindex="0"><table>
+      <thead><tr><th>Sitemap</th><th>Pages</th><th>No description</th></tr></thead>
+      <tbody><tr><td>blog</td><td>599</td><td>594</td></tr><tr><td>page</td><td>191</td><td>17</td></tr><tr><td>category</td><td>14</td><td>5</td></tr><tr><td>post</td><td>256</td><td>0</td></tr><tr><td><b>Total</b></td><td><b>1,060</b></td><td><b>616</b></td></tr></tbody></table></div>
+    <p class="caveat">An earlier run counted 617 because one address failed to load and was counted as missing a description. 616 is the confirmed number.</p>
+    <details class="app"><summary>18 sitemap addresses that redirect</summary><ul>
+      <li>/are-there-any-virtual-iop-programs-in-california/ &rarr; /treatment-services/virtual-iop/</li><li>/evening-iop-orange-county/ &rarr; /treatment-services/intensive-outpatient-program/</li><li>/virtual-drug-treatment-orange-county/ &rarr; /treatment-services/virtual-iop/</li><li>/virtual-alcohol-treatment-orange-county/ &rarr; /treatment-services/virtual-iop/</li><li>/online-mental-health-treatment-orange-county/ &rarr; /treatment-services/virtual-iop/</li><li>/virtual-iop-orange-county/ &rarr; /treatment-services/virtual-iop/</li><li>/outpatient-mental-health-orange-county/ &rarr; /treatment-services/outpatient/</li><li>/evening-iop-laguna-hills/ &rarr; /treatment-services/intensive-outpatient-program/</li><li>/evening-iop-california/ &rarr; /treatment-services/intensive-outpatient-program/</li><li>/evening-addiction-treatment-center-in-orange-county/ &rarr; /substance-abuse/drug-rehab/</li><li>/evening-addiction-treatment-center-in-laguna-hills/ &rarr; /substance-abuse/drug-rehab/</li><li>/mental-health-iop-orange-county/ &rarr; /treatment-services/intensive-outpatient-program/</li><li>/online-addiction-treatment-in-orange-county-ca/ &rarr; /treatment-services/virtual-iop/</li><li>/drug-rehab-treatment-center-california/ &rarr; /substance-abuse/drug-rehab/</li><li>/iop-california-same-day-admission-old/ &rarr; /treatment-services/intensive-outpatient-program/</li><li>/virtual-iop-laguna-hills/ &rarr; /treatment-services/virtual-iop/</li><li>/blogs/orange-county-rehab-goes-online-the-power-of-virtual-iop/ &rarr; /treatment-services/virtual-iop/</li><li>/blogs/the-top-virtual-iop-programs-serving-laguna-beach-ca/ &rarr; /treatment-services/virtual-iop/</li></ul></details>
+    <details class="app"><summary>1 page set to "noindex" but listed in the sitemap</summary><ul><li>/virtual-iop-program/</li></ul></details>
+    <details class="app"><summary>8 pages with no main heading (H1)</summary><ul>
+      <li>/tratamiento-de-salud-mental-en-san-diego-ca/</li><li>/tratamiento-de-salud-mental-en-gilroy-ca/</li><li>/tratamiento-de-salud-mental-en-mountain-view-ca/</li><li>/tratamiento-de-salud-mental-en-hanford-ca/</li><li>/tratamiento-de-salud-mental-en-colton-ca/</li><li>/mental-health-treatment-in-hanford-ca/</li><li>/mental-health-treatment-in-colton-ca/</li><li>/mental-health-treatment-in-san-diego-ca/</li></ul></details>
+    <details class="app"><summary>17 "page" addresses with no description</summary><ul>
+      <li>/explora-las-instalaciones/</li><li>/hospitalizacion-parcial/</li><li>/programa-intensivo-ambulatorio/</li><li>/que-tratamos/tratamiento-de-salud-mental/</li><li>/que-esperar-al-pedir-la-baja-laboral-para-rehabilitacion/</li><li>/evaluacion-gratuita/</li><li>/tratamiento-de-salud-mental-en-alhambra-ca/</li><li>/tratamiento-de-salud-mental-en-markleeville-ca/</li><li>/tratamiento-del-abuso-de-sustancias-en-whitethorn-ca/</li><li>/tratamiento-de-abuso-de-sustancias-en-redlands-ca/</li><li>/tratamiento-de-abuso-de-sustancias-en-indian-wells-ca/</li><li>/que-tratamos/tratamiento-de-salud-mental/trastorno-bipolar/</li><li>/que-tratamos/tratamiento-de-salud-mental/tratamiento-del-tda-tdah/</li><li>/tratamiento-del-tept/</li><li>/que-tratamos/tratamiento-de-salud-mental/tept-trauma/</li><li>/que-tratamos/tratamiento-de-salud-mental/trastornos-alimentarios/</li><li>/que-tratamos/</li></ul></details>
+    <details class="app"><summary>The 5 blog pages that do have a description</summary><ul>
+      <li>/blogs/how-virtual-iop-fits-into-a-busy-schedule-flexibility-for-parents-and-professionals/</li><li>/blogs/what-does-a-day-in-rehab-look-like-inside-an-iop-schedule/</li><li>/blogs/california-iop-requirements-what-you-need-to-know-before-starting-a-program/</li><li>/blogs/orange-county-rehab-goes-online-the-power-of-virtual-iop/</li><li>/blogs/the-top-virtual-iop-programs-serving-laguna-beach-ca/</li></ul></details>
+    <p class="repro"><b>Other counts</b> (titles over 60 characters: 533; pages with more than one H1: 21; "Moulton Pky" in the footer: 1,055; pages with no inbound link from another crawled page: 639) come from the same crawl. We keep the full per-page data on request.</p>
+  </div>
+</article>
+
+<section class="plain" id="working">
+  <h2>What is working</h2>
+  <p>These were confirmed on the live site and are worth keeping.</p>
+  <div class="cols">
+    <ul>
+      <li>State certification shown with number and dates in the footer.</li>
+      <li>48 Google reviews shown on the homepage, including one from a licensed therapist who refers clients.</li>
+      <li>The line "we'll tell you exactly what you'd pay before you commit to anything."</li>
+      <li>Main Virtual IOP page: 9 to 15 hours a week, a 9-question FAQ and a "what a week looks like" section.</li>
+    </ul>
+    <ul>
+      <li>Structured data for the clinic, the two locations and the FAQ.</li>
+      <li>Title, description, preview tags and a main-version tag are all set.</li>
+      <li>197 pages in the sitemap, plus pages for Aetna, Anthem, Cigna, Blue Shield, UnitedHealthcare, TRICARE and Medicare, and Spanish versions.</li>
+      <li>An <code>llms.txt</code> file is live for AI search tools.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="plain" id="corrections">
+  <h2>Corrections to our earlier reports</h2>
+  <p>We re-checked our own work in a browser before preparing this file. These are the changes you should know about.</p>
+  <div class="tablewrap" role="region" aria-label="Corrections" tabindex="0">
+    <table>
+      <thead><tr><th>Earlier statement</th><th>What is true</th></tr></thead>
+      <tbody>
+        <tr><td>Headline numbers show "0"</td><td>Wrong. They count up as you scroll and show 15,000+, 35, 23 and 100%. The question now is what they mean (E2).</td></tr>
+        <tr><td>Main phone is (877) 414-3007</td><td>Wrong. The header number is (949) 649-4314.</td></tr>
+        <tr><td>Virtual IOP page has no FAQ or hours</td><td>True only of the older <code>/virtual-iop/</code>. The main page has both (E7).</td></tr>
+        <tr><td>Only 4 insurance pages, about 72 pages</td><td>Wrong. There are 7 carrier pages plus Spanish versions, and 197 sitemap entries.</td></tr>
+        <tr><td>Our second report said the builder-domain link "was not found"</td><td>That correction was itself wrong. We had only searched the page code, and the pop-up loads when opened. It is confirmed (E9).</td></tr>
+        <tr><td>"Call Now" is a desktop header button</td><td>It is a phone-only button (E4).</td></tr>
+        <tr><td>26 images have no alt text</td><td>Withdrawn. They have empty alt text, which is correct for decorative images (E10).</td></tr>
+        <tr><td>City pages may be doorway pages</td><td>Mixed. Many have unique text, but 15 are templated and some are very short (E8). The seven "exact copies" we described are really redirects.</td></tr>
+        <tr><td>The sitemap has 197 pages</td><td>That was only the page sitemap. All four sitemaps list about 1,060 pages, including 599 blog pages we had not looked at (E18).</td></tr>
+        <tr><td>"Moulton Pky" spelling was not reproduced</td><td>It is real. It appears in the footer address on 1,055 pages (E18).</td></tr>
+        <tr><td>Credentials not checked</td><td>Now checked for DHCS (matches) and Joint Commission (listed, with questions). LegitScript still open (E11).</td></tr>
+        <tr><td>The 9 to 5 hours mean the admissions line is closed at night</td><td>Not established. The sentence is in the accessibility help statement. Please confirm (E4).</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="plain" id="limits">
+  <h2>Not checked yet</h2>
+  <ul>
+    <li>Mobile speed on a slow connection, and any page other than the homepage for accessibility.</li>
+    <li>Search Console data (manual actions, security issues, indexing), and who owns getuniqcli.com and compassionrecoverycenters.info.</li>
+    <li>Links that only appear after scripts run. Our crawl read each page as delivered by the server.</li>
+    <li>What happens after a form is submitted, and whether the phone lines are answered (E14). That includes what the assessment does with a self-harm answer on the server.</li>
+    <li>LegitScript status, and Joint Commission accreditation dates.</li>
+    <li>The Google Business profiles themselves.</li>
+    <li>Any dollar figure for lost calls.</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<footer>Captured from public pages on November 7, 2026 using a desktop Chrome browser. Screenshots show the site as it appeared that day, and the live site may have changed since. Nothing was submitted to any form.</footer>
+</div>
+
+<button class="totop" id="totop" type="button" aria-label="Back to top" hidden>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.getElementById('totop');if(!b)return;
+  var on=false;
+  function update(){var show=(window.pageYOffset||document.documentElement.scrollTop)>500;if(show!==on){on=show;b.hidden=!show;}}
+  window.addEventListener('scroll',update,{passive:true});update();
+  b.addEventListener('click',function(){
+    var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0,behavior:rm?'auto':'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>

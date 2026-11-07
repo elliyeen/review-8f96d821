@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Compassion Recovery Review</title>
+
+<style>
+/* Layout: a printed-report feel (navy cover, then paper pages) in one reading column. Georgia for headlines, the system font for body. One text color per theme, so hierarchy comes from size and weight. */
+:root{
+  --ink:#111111; --paper:#F5F1E7; --white:#FFFFFF; --navy:#0D1B2A;
+  --sun:#D87A24; --sun-text:#8F4A08; --red:#A31B1B; --amber:#8F4306; --rule:rgba(17,17,17,.22);
+  --serif:Georgia,"Times New Roman",serif;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",system-ui,Roboto,Helvetica,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ink:#F4F1E7; --paper:#0F1722; --sun-text:#F2A762; --red:#FF8F86; --amber:#F5BC70; --rule:rgba(244,241,231,.30); color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ink:#F4F1E7; --paper:#0F1722; --sun-text:#F2A762; --red:#FF8F86; --amber:#F5BC70; --rule:rgba(244,241,231,.30); color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;font-kerning:normal}
+.in{max-width:740px;margin:0 auto;padding-left:max(22px,env(safe-area-inset-left,0px));padding-right:max(22px,env(safe-area-inset-right,0px))}
+.wide{max-width:1040px}
+p{margin:0 0 22px;text-wrap:pretty}
+a{color:inherit;text-underline-offset:4px}
+a:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:3px}
+h1,h2,h3{font-family:var(--serif);font-weight:700;margin:0;letter-spacing:-0.025em;line-height:1.08;text-wrap:balance}
+.eyebrow{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--sun-text);margin:0 0 16px}
+
+/* cover */
+.cover{background:var(--navy);color:var(--white);padding-top:max(64px,calc(env(safe-area-inset-top,0px) + 36px));padding-bottom:56px}
+.cover .eyebrow{color:var(--sun);margin:0 0 6px}
+.cover .tag{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700;color:var(--sun);margin:0 0 48px}
+.cover-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:48px;align-items:center}
+.cover h1{font-size:clamp(52px,15vw,96px);font-weight:600;line-height:.98;letter-spacing:-0.03em;margin-bottom:28px}
+.cover .sub{font-family:var(--serif);font-size:clamp(24px,6vw,34px);line-height:1.25;margin:0 0 6px}
+.cover .url{font-family:var(--serif);font-size:clamp(20px,5vw,28px);margin:0 0 40px}
+.cover hr{border:0;border-top:1px solid var(--sun);width:48px;margin:0 0 32px}
+.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:26px 24px;margin:0}
+.meta dt{font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin-bottom:6px}
+.meta dd{margin:0;font-size:17px;line-height:1.4}
+.shot{margin:0;border-radius:6px;overflow:hidden;box-shadow:0 24px 60px rgba(0,0,0,.45);line-height:0}
+.shot img{width:100%;height:auto;display:block}
+.cover-foot{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:56px;padding-top:22px;border-top:1px solid rgba(255,255,255,.4);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600}
+
+/* pages */
+.page{padding-top:clamp(72px,11vw,128px);padding-bottom:clamp(72px,11vw,128px);border-top:1px solid var(--rule)}
+.cover+.page{border-top:0}
+.page h2{font-size:clamp(38px,9vw,56px);margin-bottom:28px}
+.lede{font-family:var(--serif);font-size:clamp(22px,4.6vw,27px);line-height:1.42;margin:0 0 36px}
+.contents{list-style:none;margin:0;padding:0;border-top:1px solid var(--rule)}
+.contents li{border-bottom:1px solid var(--rule)}
+.contents a{display:flex;justify-content:space-between;gap:16px;min-height:52px;align-items:center;padding:10px 0;text-decoration:none;font-size:18px}
+.contents a span:last-child{font-size:13px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--sun-text)}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:40px 24px;margin:56px 0 0;padding-top:36px;border-top:1px solid var(--rule)}
+.stats div{min-width:0}
+.stats b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(44px,11vw,64px);line-height:1;letter-spacing:-0.03em}
+.stats span{display:block;margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;line-height:1.4}
+
+/* area bars */
+.areas{list-style:none;margin:0;padding:0}
+.areas li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 16px;padding:22px 0;border-top:1px solid var(--rule)}
+.areas li:last-child{border-bottom:1px solid var(--rule)}
+.areas .n{font-family:var(--serif);font-size:26px;font-weight:700}
+.areas .t{font-size:19px;font-weight:600}
+.areas .d{grid-column:1 / -1;margin:0}
+.bar{grid-column:1 / -1;height:8px;background:var(--rule);border-radius:4px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--red);border-radius:4px}
+
+/* findings */
+.finding{padding:56px 0 0;margin-top:56px;border-top:1px solid var(--rule)}
+.finding:first-of-type{border-top:0;margin-top:0;padding-top:0}
+.fid{font-size:13px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;margin:0 0 14px;display:flex;gap:14px;flex-wrap:wrap;align-items:baseline}
+.imp{font-weight:700}
+.imp.crit{color:var(--red)} .imp.high{color:var(--amber)} .imp.med{color:var(--ink)}
+.finding h3{font-size:clamp(28px,6.6vw,38px);margin-bottom:30px}
+.finding h4{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--sun-text);margin:32px 0 12px}
+.q{font-family:var(--serif);font-size:21px;line-height:1.45;margin:0 0 14px;padding-left:18px;border-left:3px solid var(--ink)}
+.unsure{border:1px solid var(--ink);border-radius:10px;padding:16px 20px;margin:26px 0 0}
+.unsure p{margin:0}
+figure{margin:36px 0 0}
+figure a{display:block;line-height:0;border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+figure img{width:100%;height:auto;display:block}
+figcaption{font-size:15.5px;line-height:1.5;margin-top:12px}
+
+/* tables as lists on a phone */
+.do{margin:0;padding:0;list-style:none;border-top:1px solid var(--ink)}
+.do li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 14px;padding:24px 0;border-bottom:1px solid var(--rule)}
+.do .no{font-family:var(--serif);font-weight:700;font-size:22px}
+.do .what{font-weight:650;font-size:19px;line-height:1.4}
+.do .why{grid-column:2;margin:0}
+.do .impact{grid-column:2;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;margin-top:4px}
+.crit{color:var(--red)} .high{color:var(--amber)}
+
+.phase{padding:34px 0;border-top:1px solid var(--rule)}
+.phase:last-of-type{border-bottom:1px solid var(--rule)}
+.phase h3{font-size:28px;margin-bottom:10px}
+.phase ul{margin:12px 0 0;padding-left:22px}
+.phase li{margin:8px 0}
+.small{font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--sun-text);margin:0 0 8px}
+
+.plainlist{margin:0;padding:0;list-style:none;border-top:1px solid var(--rule)}
+.plainlist li{padding:22px 0;border-bottom:1px solid var(--rule)}
+.plainlist b{display:block;font-size:19px;margin-bottom:4px}
+.rules{border:1px solid var(--ink);border-radius:12px;padding:20px 22px;margin:0 0 44px}
+.rules p{margin:0}
+
+.chk{width:100%;border-collapse:collapse;font-size:17px}
+.chk th,.chk td{text-align:left;padding:14px 12px 14px 0;border-bottom:1px solid var(--rule);vertical-align:top}
+.chk th{font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.tw{overflow-x:auto}
+.cta{display:inline-flex;align-items:center;min-height:48px;padding:0 22px;border:1px solid var(--ink);border-radius:999px;font-weight:650;text-decoration:none}
+footer{background:var(--navy);color:var(--white);padding:56px 0 calc(64px + env(safe-area-inset-bottom,0px))}
+footer p{margin:0 0 10px;font-size:15.5px}
+footer .eyebrow{color:var(--sun)}
+
+@media (min-width:900px){
+  body{font-size:19px}
+  .cover-grid{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:72px}
+  .meta{grid-template-columns:repeat(3,auto);justify-content:start;gap:26px 48px}
+  .stats{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .do li{grid-template-columns:44px minmax(0,1.15fr) minmax(0,1fr) 110px;align-items:start}
+  .do .why,.do .impact{grid-column:auto;margin:0}
+  .do .impact{text-align:right;margin-top:6px}
+}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+
+.ref{display:inline-block;margin-left:10px;font-family:var(--sans);font-size:11px;line-height:1.2;letter-spacing:.14em;text-transform:uppercase;font-weight:700;text-decoration:none;border-bottom:2px solid var(--sun);white-space:nowrap;vertical-align:2px;padding:2px 0}
+.proofrow{margin:36px 0 0;padding:16px 0 0;border-top:1px solid var(--ink);display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.proofrow .l{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--sun-text)}
+.proofrow a{font-weight:650;font-size:16px;min-height:44px;display:inline-flex;align-items:center}
+.proofline{font-size:15.5px;margin:-8px 0 28px}
+.stats a.ref{margin:10px 0 0;display:inline-block}
+
+.totop{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:60;width:52px;height:52px;border-radius:50%;border:2px solid var(--paper);background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.totop[hidden]{display:none}
+.totop:active{transform:scale(.96)}
+.totop:focus-visible{outline:3px solid var(--sun,#D87A24);outline-offset:3px}
+</style>
+</head>
+<body>
+
+
+<header class="cover">
+  <div class="in wide">
+    <p class="eyebrow" style="margin-bottom:6px">Elliyeen</p>
+    <p class="tag">Revenue &middot; Safety &middot; Experience &middot; Website review</p>
+    <div class="cover-grid">
+      <div>
+        <h1>Website<br>Review</h1>
+        <p class="sub">Compassion Recovery Centers</p>
+        <p class="url">compassionrecoverycenters.com</p>
+        <hr>
+        <dl class="meta">
+          <div><dt>Critical items</dt><dd>3</dd></div>
+          <div><dt>Review date</dt><dd>November 2026</dd></div>
+          <div><dt>Pages checked</dt><dd>About 1,060</dd></div>
+          <div><dt>Industry</dt><dd>Behavioral health</dd></div>
+          <div><dt>Prepared for</dt><dd>Josh Marquez</dd></div>
+        </dl>
+      </div>
+      <figure class="shot"><img src="img/hero.jpg" alt="The Compassion Recovery Centers homepage as seen on a desktop screen"></figure>
+    </div>
+    <div class="cover-foot"><span>Confidential</span><span>www.elliyeen.com</span></div>
+  </div>
+</header>
+
+<section class="page" id="found"><div class="in">
+  <p class="eyebrow">Summary</p>
+  <h2>What We Found</h2>
+  <p class="lede">Your records check out and your site loads fast. But three items need a look soon, and one of them affects patient safety.</p>
+  <p class="proofline">Proof for the first sentence: <a class="ref" href="evidence/#e11" >Proof E11</a> <a class="ref" href="evidence/#e12" >Proof E12</a></p>
+  <p>We read your website, your state and Joint Commission records, and your site&rsquo;s public settings. We opened every page in your sitemap, about 1,060 pages, and we read the code of your free assessment. We did not review your clinical care.</p>
+  <p>The critical items are in your free assessment, in hidden code on your blog, and in mailbox addresses on city pages. Your email settings and many words that do not match, such as insurance promises, phone numbers and places, come next. Every quote below ends with a Proof tag. Tap it to open the exhibit that backs it up. The exhibits hold the screenshots, page code and full lists.</p>
+  <div class="stats">
+    <div><b>23</b><span>Steps in a &ldquo;one minute&rdquo; form</span><a class="ref" href="evidence/#e19" >Proof E19</a></div>
+    <div><b>597</b><span>Pages with hidden links</span><a class="ref" href="evidence/#e15" >Proof E15</a></div>
+    <div><b>333</b><span>Broken links, used 1,818 times</span><a class="ref" href="evidence/#e17" >Proof E17</a></div>
+    <div><b>2</b><span>Email security records, where one is allowed</span><a class="ref" href="evidence/#e20" >Proof E20</a></div>
+  </div>
+  <ul class="contents" style="margin-top:56px" aria-label="Contents">
+    <li><a href="#areas"><span>Where the findings are</span><span>16</span></a></li>
+    <li><a href="#safety"><span>Patient safety</span><span>2</span></a></li>
+    <li><a href="#security"><span>Security and exposure</span><span>5</span></a></li>
+    <li><a href="#claims"><span>Words that do not match</span><span>4</span></a></li>
+    <li><a href="#health"><span>Site health</span><span>5</span></a></li>
+    <li><a href="#first"><span>Do these first</span><span>10</span></a></li>
+    <li><a href="#plan"><span>The plan and automation</span><span>90 days</span></a></li>
+    <li><a href="#questions"><span>Questions for you</span><span>9</span></a></li>
+  </ul>
+</div></section>
+
+<section class="page" id="areas"><div class="in">
+  <p class="eyebrow">Overview</p>
+  <h2>Where the findings are</h2>
+  <p class="lede">Sixteen findings in four areas. Security and site health have five each. Patient safety has the highest stakes.</p>
+  <ul class="areas">
+    <li><span class="t">Patient safety</span><span class="n">2</span><div class="bar"><i style="width:40%"></i></div><p class="d">The free assessment asks about self-harm and gives no crisis help. It says one minute but takes much longer.</p></li>
+    <li><span class="t">Security and exposure</span><span class="n">5</span><div class="bar"><i style="width:100%"></i></div><p class="d">Hidden links, mailbox addresses, broken email protection, many tracking tools, and weak site settings.</p></li>
+    <li><span class="t">Words that do not match</span><span class="n">4</span><div class="bar"><i style="width:80%"></i></div><p class="d">Insurance, phone numbers, places and proof each say different things on different pages.</p></li>
+    <li><span class="t">Site health</span><span class="n">5</span><div class="bar"><i style="width:100%"></i></div><p class="d">Broken links, sitemap clutter, thin or templated pages, clinician titles and readability gaps.</p></li>
+  </ul>
+  <p style="margin-top:36px">Bars compare counts, not scores. We did not give 1&ndash;100 scores because that needs a full specialist-agent run.</p>
+</div></section>
+
+<section class="page" id="safety"><div class="in">
+  <p class="eyebrow">Patient safety</p>
+  <h2>The free assessment</h2>
+  <p class="lede">The form promises one minute and asks about self-harm. It shows no crisis help.</p>
+
+  <article class="finding" id="f1">
+    <p class="fid"><span>F1</span><span class="imp crit">Critical</span></p>
+    <h3>Self-harm question, no crisis help</h3>
+    <h4>What we saw</h4>
+    <p class="q">Step 20 asks: &ldquo;Thought that you would be better off dead, or of hurting yourself in some way.&rdquo; It is required.<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <p class="q">We searched all of the form&rsquo;s text for 988, 911, &ldquo;crisis,&rdquo; &ldquo;suicide,&rdquo; &ldquo;emergency&rdquo; and &ldquo;lifeline.&rdquo; We found none.<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <p class="q">The worst result ends: &ldquo;Help is available &mdash; reach out today.&rdquo; It gives no phone number.<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <p class="q">None of the form&rsquo;s 50 rules mention that question.<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <h4>Why it matters</h4>
+    <p>A person in crisis may answer &ldquo;nearly every day&rdquo; and see no help at that moment. This is the most serious item in the report.</p>
+    <div class="unsure"><p><b>What we cannot see.</b> We did not fill out or send the form. Your team may get an alert after someone sends it. Only you know.</p></div>
+    <h4>What to do</h4>
+    <p>Show &ldquo;Call or text 988 now&rdquo; on every step. If the answer is anything but &ldquo;Not at all,&rdquo; show 988 and a staffed phone number at once, and alert a person. Ask your clinical lead to review the form.</p>
+    <figure><a href="img/assess-q20.jpg" target="_blank" rel="noopener"><img src="img/assess-q20.jpg" alt="Assessment step asking about thoughts of being better off dead or hurting yourself, with four answers and no crisis information" loading="lazy"></a><figcaption>Step 20. We showed this hidden step on our own screen. Nothing was entered or sent.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e19" target="_blank" rel="noopener">E19 &middot; Free assessment</a></div>
+  </article>
+
+  <article class="finding" id="f2">
+    <p class="fid"><span>F2</span><span class="imp high">High</span></p>
+    <h3>&ldquo;One minute&rdquo; takes 23 steps</h3>
+    <h4>What we saw</h4>
+    <p class="q">&ldquo;Step 1 of 23.&rdquo; &ldquo;This will only take a minute.&rdquo; &ldquo;Three easy steps.&rdquo;<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <p class="q">Step 2 requires name, email and phone before any question. Step 23 asks for date of birth and insurance details.<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <p class="q">&ldquo;Operates entirely online.&rdquo; The rest of your site describes an office in Laguna Hills.<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <h4>Why it matters</h4>
+    <p>A time claim that is far off can feel like a trick. People quit. Claims like this should be true.</p>
+    <div class="unsure"><p><b>Our estimate.</b> Three to five minutes. We did not time a person.</p></div>
+    <h4>What to do</h4>
+    <p>Say the real time, or cut the steps. Ask for contact details after the questions. Make the &ldquo;entirely online&rdquo; line match how you really work.</p>
+    <figure><a href="img/assess-intro.jpg" target="_blank" rel="noopener"><img src="img/assess-intro.jpg" alt="Assessment first screen saying Step 1 of 23 and This will only take a minute" loading="lazy"></a><figcaption>The first screen.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e19" target="_blank" rel="noopener">E19 &middot; Free assessment</a></div>
+  </article>
+</div></section>
+
+<section class="page" id="security"><div class="in">
+  <p class="eyebrow">Security and exposure</p>
+  <h2>What may be wrong behind the scenes</h2>
+  <p class="lede">Two findings look like work by someone else. Please find out who made these changes.</p>
+  <div class="rules"><p><b>How we checked.</b> We only read public information, such as page code, public records and DNS. We did not try to break in or test logins. Active testing needs Josh&rsquo;s written permission.</p></div>
+
+  <article class="finding" id="f3">
+    <p class="fid"><span>F3</span><span class="imp crit">Critical</span></p>
+    <h3>Hidden links to another company</h3>
+    <h4>What we saw</h4>
+    <p class="q">597 of 599 blog pages have four links to getuniqcli.com, such as &ldquo;Uniqcli Mission Critical IT Procurement.&rdquo;<a class="ref" href="evidence/#e15" >Proof E15</a></p>
+    <p class="q">The code hides them: &ldquo;display:none &hellip; visibility:hidden &hellip; left:-9999px.&rdquo;<a class="ref" href="evidence/#e15" >Proof E15</a></p>
+    <h4>Why it matters</h4>
+    <p>People cannot see them. Search engines can. Hidden links break Google&rsquo;s rules and can lower your ranking. They can also mean someone changed your site without telling you.</p>
+    <div class="unsure"><p><b>A lead.</b> Your site has two plugins that can change code and text in bulk: Code Snippets and String Locator. Look there first for a snippet that adds this block. We cannot see inside your admin area.</p></div>
+    <h4>What to do</h4>
+    <p>Ask who manages your site and your search work. Find what adds the links and remove it. Check who has admin access and which plugins changed lately. Look in Google Search Console for warnings.</p>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e15" target="_blank" rel="noopener">E15 &middot; Hidden links</a><a href="evidence/#a1" target="_blank" rel="noopener">A1 &middot; Hidden-link pages</a></div>
+  </article>
+
+  <article class="finding" id="f4">
+    <p class="fid"><span>F4</span><span class="imp crit">Critical</span></p>
+    <h3>&ldquo;Mailbox&rdquo; addresses and a lookalike email domain</h3>
+    <h4>What we saw</h4>
+    <p class="q">&ldquo;Buzón Corporativo De Compassion Recovery Centers Santa Rosa. 1264 Mendocino Ave &hellip; (714) 909-2201 &hellip; backlinks9@compassionrecoverycenters.info&rdquo;<a class="ref" href="evidence/#e16" >Proof E16</a></p>
+    <p class="q">28 city pages (16 Spanish, 12 English) list mailbox addresses. Page data holds 16 different addresses and seven emails at the .info name.<a class="ref" href="evidence/#e16" >Proof E16</a></p>
+    <p class="q">The .info name resolves on the internet. It points to two server addresses.<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <h4>Why it matters</h4>
+    <p>A mailbox is not an office. Listing mailboxes as places can look like fake locations. A lookalike domain can also be used to send fake emails that look like yours.</p>
+    <div class="unsure"><p><b>We do not know who owns the .info name.</b> Our lookup was blocked. Check your registrar account.</p></div>
+    <h4>What to do</h4>
+    <p>Find out who added these. Remove any address that is not a real site you run. If you own the .info name, set up email protection on it. If you do not, ask who does.</p>
+    <figure><a href="img/santarosa.jpg" target="_blank" rel="noopener"><img src="img/santarosa.jpg" alt="Spanish Santa Rosa page showing a mailbox address, a 714 phone number and a backlinks9 email address" loading="lazy"></a><figcaption>The Santa Rosa page, as a visitor sees it.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e16" target="_blank" rel="noopener">E16 &middot; Mailbox addresses</a><a href="evidence/#a2" target="_blank" rel="noopener">A2 &middot; Mailbox pages</a><a href="evidence/#e20" target="_blank" rel="noopener">E20 &middot; Security and exposure</a></div>
+  </article>
+
+  <article class="finding" id="f5">
+    <p class="fid"><span>F5</span><span class="imp high">High</span></p>
+    <h3>Email protection has two conflicting records</h3>
+    <h4>What we saw</h4>
+    <p class="q">&ldquo;v=DMARC1; p=quarantine; &hellip; rua=mailto:dmarc_rua@onsecureserver.net&rdquo;<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <p class="q">&ldquo;v=DMARC1; p=none; rua=mailto:your-email@compassionrecoverycenters.com&rdquo;<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <p class="q">Your sender list ends in &ldquo;-all,&rdquo; which is strict. It names GoDaddy, SendGrid and Microsoft 365.<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <h4>Why it matters</h4>
+    <p>DMARC tells email systems what to do with fake emails that pretend to be you. The rules allow only one record. With two, receivers may ignore both. The second one is an unfinished template. Fake emails that look like they come from a treatment center can hurt patients.</p>
+    <h4>What to do</h4>
+    <p>Keep one record. Use a real address for reports. Check that every service that sends your email is on the sender list.</p>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e20" target="_blank" rel="noopener">E20 &middot; Security and exposure</a></div>
+  </article>
+
+  <article class="finding" id="f6">
+    <p class="fid"><span>F6</span><span class="imp high">High</span></p>
+    <h3>Many tracking tools on pages where people share health details</h3>
+    <h4>What we saw</h4>
+    <p class="q">On the free assessment page: Microsoft Clarity, Google Tag Manager, Google Ads, call tracking and live chat all load.<a class="ref" href="evidence/#e19" >Proof E19</a></p>
+    <p class="q">The insurance pop-up links its Terms and Privacy to asetizdf.elementor.cloud, not to your own site. The pop-up is on every page.<a class="ref" href="evidence/#e9" >Proof E9</a></p>
+    <p class="q">15 outside scripts load on the homepage. None has a tamper check.<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <h4>Why it matters</h4>
+    <p>Each tool is a place where private details could leak. Health regulators have warned providers about tracking tools on pages like these. Your privacy rules should live on your own site.</p>
+    <div class="unsure"><p><b>We did not check what each tool receives.</b> Ask your compliance adviser to review this.</p></div>
+    <h4>What to do</h4>
+    <p>Turn off recording and ad tools on the assessment and insurance pages unless you have a signed agreement and a clear need. Point the privacy links to your own pages.</p>
+    <figure><a href="img/popup.jpg" target="_blank" rel="noopener"><img src="img/popup.jpg" alt="Verify Insurance For Free pop-up with form fields and a consent line" loading="lazy"></a><figcaption>The pop-up. We opened it and sent nothing.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e19" target="_blank" rel="noopener">E19 &middot; Free assessment</a><a href="evidence/#e9" target="_blank" rel="noopener">E9 &middot; Forms and privacy links</a><a href="evidence/#e12" target="_blank" rel="noopener">E12 &middot; Speed and trackers</a><a href="evidence/#e20" target="_blank" rel="noopener">E20 &middot; Security and exposure</a></div>
+  </article>
+
+  <article class="finding" id="f7">
+    <p class="fid"><span>F7</span><span class="imp high">High</span></p>
+    <h3>Powerful plugins and a public list of accounts</h3>
+    <h4>What we saw</h4>
+    <p class="q">Your public site data lists installed plugins, including Code Snippets and String Locator.<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <p class="q">The public author list shows two account names. The login page is open to the world, which is normal.<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <p class="q">Your server sends none of the usual browser safety settings. We looked for five, such as HSTS and a content security policy.<a class="ref" href="evidence/#e20" >Proof E20</a></p>
+    <h4>Why it matters</h4>
+    <p>Attackers start with a plugin list and account names. A plugin that edits code, in the wrong hands, can add hidden content. Safety settings block whole groups of attacks.</p>
+    <div class="unsure"><p><b>We did not check plugin versions against known bugs.</b> We also could not see whether admin logins use a second step.</p></div>
+    <h4>What to do</h4>
+    <p>Turn on two-step login for every admin. Remove plugins you do not need. Hide the public author list. Add the safety settings at your host or Cloudflare. Add a security contact file.</p>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e20" target="_blank" rel="noopener">E20 &middot; Security and exposure</a></div>
+  </article>
+
+  <article class="finding" id="good">
+    <p class="fid"><span>Also</span><span class="imp med">Good news</span></p>
+    <h3>What is already good</h3>
+    <ul class="plainlist">
+      <li><b>Secure connection</b>Visitors who type http are sent to https.<a class="ref" href="evidence/#e20" >Proof E20</a></li>
+      <li><b>Common attack doors are shut</b>The remote-access file, the readme file, the uploads folder listing and the author-number trick are all blocked.<a class="ref" href="evidence/#e20" >Proof E20</a></li>
+      <li><b>Strict sender list</b>Your SPF record ends in &ldquo;-all.&rdquo;<a class="ref" href="evidence/#e20" >Proof E20</a></li>
+      <li><b>No suspicious code in the page scripts</b>We looked for hidden-code tricks in the homepage scripts and found none.<a class="ref" href="evidence/#e20" >Proof E20</a></li>
+    </ul>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e20" target="_blank" rel="noopener">E20 &middot; Security and exposure</a></div>
+  </article>
+</div></section>
+
+<section class="page" id="claims"><div class="in">
+  <p class="eyebrow">Words that do not match</p>
+  <h2>What visitors read</h2>
+  <p class="lede">Different pages give different answers. A worried family may stop and not call.</p>
+
+  <article class="finding" id="f8">
+    <p class="fid"><span>F8</span><span class="imp high">High</span></p>
+    <h3>Insurance promises disagree</h3>
+    <h4>What we saw</h4>
+    <p class="q">&ldquo;100 Percent In Network Provider&rdquo;<a class="ref" href="evidence/#e1" >Proof E1</a></p>
+    <p class="q">&ldquo;In network with most insurance and Medicare plans&rdquo;<a class="ref" href="evidence/#e1" >Proof E1</a></p>
+    <p class="q">&ldquo;Others might require some out-of-pocket fee&rdquo;<a class="ref" href="evidence/#e1" >Proof E1</a></p>
+    <h4>Why it matters</h4>
+    <p>A family reads &ldquo;100%,&rdquo; then reads that some plans may charge a fee.</p>
+    <h4>What to do</h4>
+    <p>Choose one clear sentence and use it on every page. Say plainly whether you take Medi-Cal.</p>
+    <figure><a href="img/hero.jpg" target="_blank" rel="noopener"><img src="img/hero.jpg" alt="Homepage banner saying most insurance and a bar saying 100 Percent In Network Provider" loading="lazy"></a><figcaption>The top of your homepage has two promises in the first few lines.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e1" target="_blank" rel="noopener">E1 &middot; Insurance claims</a></div>
+  </article>
+
+  <article class="finding" id="f9">
+    <p class="fid"><span>F9</span><span class="imp high">High</span></p>
+    <h3>The big phone buttons may reach a closed line</h3>
+    <h4>What we saw</h4>
+    <p class="q">On a phone, &ldquo;Call Now&rdquo; and &ldquo;Verify Insurance&rdquo; both call (877)&nbsp;375-4344.<a class="ref" href="evidence/#e4" >Proof E4</a></p>
+    <p class="q">&ldquo;The number can be called during the hours of 9 AM &ndash; 5 PM PST Monday through Friday.&rdquo;<a class="ref" href="evidence/#e4" >Proof E4</a></p>
+    <p class="q">&ldquo;Hours: Open 24 Hours&rdquo;<a class="ref" href="evidence/#e4" >Proof E4</a></p>
+    <h4>Why it matters</h4>
+    <p>Most people on a phone tap the big button. If nobody answers at night, a person who needs help may give up.</p>
+    <div class="unsure"><p><b>We are not sure.</b> The 9-to-5 line sits in the accessibility note. The number may be staffed all night.</p></div>
+    <h4>What to do</h4>
+    <p>Use one number that is always answered. Label the others. Make the hours match the truth.</p>
+    <figure><a href="img/mobile-buttons.jpg" target="_blank" rel="noopener"><img src="img/mobile-buttons.jpg" alt="Homepage on a phone with a blue Call Now button and a yellow Verify Insurance button" loading="lazy"></a><figcaption>Your homepage on a phone. Both buttons call the same number.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e4" target="_blank" rel="noopener">E4 &middot; Phone lines and hours</a></div>
+  </article>
+
+  <article class="finding" id="f10">
+    <p class="fid"><span>F10</span><span class="imp high">High</span></p>
+    <h3>Places do not match</h3>
+    <h4>What we saw</h4>
+    <p class="q">&ldquo;Care in-person in Laguna Beach, San Bernardino California&rdquo;<a class="ref" href="evidence/#e3" >Proof E3</a></p>
+    <p class="q">San Bernardino page: &ldquo;We are proud to serve the Laguna Hills community.&rdquo;<a class="ref" href="evidence/#e3" >Proof E3</a></p>
+    <p class="q">&ldquo;Inpatient Treatment: We work the best inpatient facilities in California.&rdquo;<a class="ref" href="evidence/#e3" >Proof E3</a></p>
+    <h4>Why it matters</h4>
+    <p>People and Google use your address to find you. Mixed places can send people to the wrong building.</p>
+    <h4>What to do</h4>
+    <p>Remove &ldquo;Laguna Beach&rdquo; unless it is real. Rewrite the San Bernardino page. Explain what &ldquo;inpatient&rdquo; means for you.</p>
+    <figure><a href="img/seals-beach.jpg" target="_blank" rel="noopener"><img src="img/seals-beach.jpg" alt="Homepage section naming Laguna Beach and San Bernardino" loading="lazy"></a><figcaption>Your homepage names Laguna Beach.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e3" target="_blank" rel="noopener">E3 &middot; Where care happens</a></div>
+  </article>
+
+  <article class="finding" id="f11">
+    <p class="fid"><span>F11</span><span class="imp high">High</span></p>
+    <h3>Proof is unclear</h3>
+    <h4>What we saw</h4>
+    <p class="q">&ldquo;35 Years of Experience&rdquo; and &ldquo;23 Millions Addicted.&rdquo; Your About page says you started in 2019.<a class="ref" href="evidence/#e2" >Proof E2</a></p>
+    <p class="q">The Joint Commission seal links to its home page, not to your record.<a class="ref" href="evidence/#e5" >Proof E5</a></p>
+    <p class="q">The Joint Commission record lists nine sites under your company name. Your Locations page lists two. Six of the others have no page on your site, and Los Angeles has only virtual-service pages.<a class="ref" href="evidence/#e11" >Proof E11</a></p>
+    <h4>Why it matters</h4>
+    <p>People look at numbers first. If one does not add up, they may doubt the rest. A seal should match the care it sits next to.</p>
+    <div class="unsure"><p><b>Please check this.</b> The record may be right and the website incomplete. Only you know.</p></div>
+    <h4>What to do</h4>
+    <p>Say what each number counts. Link each seal to your own record. Add a page that lists each site and what it is approved to do. Show license types for each clinician.</p>
+    <figure><a href="img/jc-site.jpg" target="_blank" rel="noopener"><img src="img/jc-site.jpg" alt="Joint Commission record showing a Los Angeles site under Compassion Recovery Centers LLC" loading="lazy"></a><figcaption>The Joint Commission&rsquo;s own list. This record is for a Los Angeles site under your company name.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e2" target="_blank" rel="noopener">E2 &middot; Headline numbers</a><a href="evidence/#e5" target="_blank" rel="noopener">E5 &middot; Seals</a><a href="evidence/#e11" target="_blank" rel="noopener">E11 &middot; Official registries</a></div>
+  </article>
+</div></section>
+
+<section class="page" id="health"><div class="in">
+  <p class="eyebrow">Site health</p>
+  <h2>How the site is kept up</h2>
+  <p class="lede">Your main pages are clean. The blog has most of the problems.</p>
+
+  <article class="finding" id="f12">
+    <p class="fid"><span>F12</span><span class="imp high">High</span></p>
+    <h3>333 broken links</h3>
+    <h4>What we saw</h4>
+    <p class="q">1,818 links on 470 pages lead to &ldquo;The Page Can&rsquo;t Be Found.&rdquo; Most are on blog pages.<a class="ref" href="evidence/#e17" >Proof E17</a></p>
+    <p class="q">One broken address, for medication-assisted treatment, is linked from 95 pages.<a class="ref" href="evidence/#e17" >Proof E17</a></p>
+    <p class="q">About 790 links start &ldquo;/httpsionrecovery&hellip;&rdquo; That looks like a bulk find-and-replace mistake.<a class="ref" href="evidence/#e17" >Proof E17</a></p>
+    <h4>Why it matters</h4>
+    <p>People who click land on an error page. Search engines read many broken links as a site that is not looked after.</p>
+    <h4>What to do</h4>
+    <p>Fix the broken web addresses in one bulk change. Then point the other links to the right pages. Start with the five most linked.</p>
+    <figure><a href="img/broken404.jpg" target="_blank" rel="noopener"><img src="img/broken404.jpg" alt="Page Can't Be Found message at the medication-assisted-treatment address" loading="lazy"></a><figcaption>One broken address. Ninety-five pages link to it.</figcaption></figure>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e17" target="_blank" rel="noopener">E17 &middot; Broken links</a><a href="evidence/#a3" target="_blank" rel="noopener">A3 &middot; Broken-link list</a></div>
+  </article>
+
+  <article class="finding" id="f13">
+    <p class="fid"><span>F13</span><span class="imp med">Medium</span></p>
+    <h3>Sitemap clutter and missing descriptions</h3>
+    <ul class="plainlist">
+      <li><b>18 redirecting pages</b>They are listed in the sitemap but send visitors elsewhere.<a class="ref" href="evidence/#e18" >Proof E18</a></li>
+      <li><b>1 page set to hide from search</b>It is still in the sitemap.<a class="ref" href="evidence/#e18" >Proof E18</a></li>
+      <li><b>616 pages with no description</b>That includes 594 of 599 blog pages.<a class="ref" href="evidence/#e18" >Proof E18</a></li>
+      <li><b>533 titles too long</b>Search results will cut them off.<a class="ref" href="evidence/#e18" >Proof E18</a></li>
+      <li><b>&ldquo;Moulton Pky&rdquo; in the footer on 1,055 pages</b>It should say &ldquo;Pkwy.&rdquo;<a class="ref" href="evidence/#e18" >Proof E18</a></li>
+    </ul>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e18" target="_blank" rel="noopener">E18 &middot; Full sitemap check</a><a href="evidence/#a4" target="_blank" rel="noopener">A4 &middot; Sitemap lists</a></div>
+  </article>
+
+  <article class="finding" id="f14">
+    <p class="fid"><span>F14</span><span class="imp med">Medium</span></p>
+    <h3>Pages to review</h3>
+    <ul class="plainlist">
+      <li><b>Old Virtual IOP page</b>Two pages cover one service. The old one mentions &ldquo;luxury housing.&rdquo;<a class="ref" href="evidence/#e7" >Proof E7</a></li>
+      <li><b>15 city pages are about 45% the same text</b>Each has a shared template block and about half its own text. Three other pages (Hanford, Colton, San Diego) have about 36 words and no main heading.<a class="ref" href="evidence/#e8" >Proof E8</a></li>
+      <li><b>599 blog pages</b>Most were published on one day. Many name towns far from your offices. We did not judge their quality.<a class="ref" href="evidence/#e18" >Proof E18</a></li>
+    </ul>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e7" target="_blank" rel="noopener">E7 &middot; Two Virtual IOP pages</a><a href="evidence/#e8" target="_blank" rel="noopener">E8 &middot; City and evening pages</a></div>
+  </article>
+
+  <article class="finding" id="f15">
+    <p class="fid"><span>F15</span><span class="imp med">Medium</span></p>
+    <h3>Clinician titles differ</h3>
+    <p>One therapist is &ldquo;Primary Therapist&rdquo; on the homepage and &ldquo;Associate Marriage and Family Therapist&rdquo; on the About page. A &ldquo;Dr.&rdquo; shows no degree. The clinical reviewer is not on the team page. Show license types and match titles everywhere.<a class="ref" href="evidence/#e6" >Proof E6</a></p>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e6" target="_blank" rel="noopener">E6 &middot; Clinician titles</a></div>
+  </article>
+
+  <article class="finding" id="f16">
+    <p class="fid"><span>F16</span><span class="imp med">Medium</span></p>
+    <h3>Readability gaps</h3>
+    <p>White text on your blue is just under the reading standard (4.37 to 1, where 4.5 is the goal). Three links have no readable name. The homepage has no FAQ. We scanned the homepage only.<a class="ref" href="evidence/#e10" >Proof E10</a></p>
+  <div class="proofrow"><span class="l">Full proof</span><a href="evidence/#e10" target="_blank" rel="noopener">E10 &middot; FAQ and accessibility</a></div>
+  </article>
+</div></section>
+
+<section class="page" id="first"><div class="in wide" style="max-width:1040px">
+  <div class="in" style="padding:0">
+  <p class="eyebrow">Top 10</p>
+  <h2>Do These First</h2>
+  <p class="lede">Each change removes a risk or a barrier. None needs a rebuild.</p></div>
+  <ol class="do">
+    <li><span class="no">1</span><span class="what">Add crisis help to the free assessment. Make the time claim true.</span><span class="why">A person in crisis must see help right away. <a href="#f1">F1</a>, <a href="#f2">F2</a></span><span class="impact crit">Critical</span></li>
+    <li><span class="no">2</span><span class="what">Find and remove the hidden links. Check who has admin access.</span><span class="why">They break search rules and may mean an unauthorized change. <a href="#f3">F3</a></span><span class="impact crit">Critical</span></li>
+    <li><span class="no">3</span><span class="what">Remove or confirm the mailbox addresses and .info emails.</span><span class="why">They look like fake locations and a lookalike domain. <a href="#f4">F4</a></span><span class="impact crit">Critical</span></li>
+    <li><span class="no">4</span><span class="what">Keep one DMARC record with a real report address.</span><span class="why">Fake emails could pass as yours. <a href="#f5">F5</a></span><span class="impact high">High</span></li>
+    <li><span class="no">5</span><span class="what">Choose one insurance sentence. Use it everywhere.</span><span class="why">Mixed promises stop calls. <a href="#f8">F8</a></span><span class="impact high">High</span></li>
+    <li><span class="no">6</span><span class="what">Make the phone buttons reach an always-answered line.</span><span class="why">Night calls matter most. <a href="#f9">F9</a></span><span class="impact high">High</span></li>
+    <li><span class="no">7</span><span class="what">Fix place names. Rewrite the San Bernardino page.</span><span class="why">People and Google need one clear address. <a href="#f10">F10</a></span><span class="impact high">High</span></li>
+    <li><span class="no">8</span><span class="what">Explain the numbers. Link seals to your own records. Answer the Joint Commission questions.</span><span class="why">Proof must match the care. <a href="#f11">F11</a></span><span class="impact high">High</span></li>
+    <li><span class="no">9</span><span class="what">Fix the 118 broken web addresses in one bulk change.</span><span class="why">One fix repairs 793 links. <a href="#f12">F12</a></span><span class="impact high">High</span></li>
+    <li><span class="no">10</span><span class="what">Point privacy links to your own site. Review the tracking tools.</span><span class="why">Private details need a policy you control. <a href="#f6">F6</a></span><span class="impact high">High</span></li>
+  </ol>
+</div></section>
+
+<section class="page" id="plan"><div class="in">
+  <p class="eyebrow">The plan</p>
+  <h2>Fix the Foundation First</h2>
+  <p class="lede">Safety and trust come first. Then simple tools can answer people faster and cut repeat work.</p>
+  <div class="phase"><p class="small">Days 1 to 30</p><h3>Fix the foundation</h3>
+    <ul><li>The ten items above</li><li>Two-step login for every admin</li><li>Safety settings at your host</li><li>Descriptions for the blog, and a clean sitemap</li></ul></div>
+  <h2 style="margin-top:72px">Build the Engine</h2>
+  <p class="lede">Each idea helps a patient get an answer sooner, saves your team from a repeat task, or both.</p>
+  <div class="rules"><p><b>Safety rule.</b> A person handles anything about safety. If someone is in crisis, a tool must send them to 988 or a live person right away. Tools never give medical advice. Health privacy laws such as HIPAA apply, and addiction records have an extra rule, 42&nbsp;CFR Part&nbsp;2. Every tool that touches patient details needs a signed agreement and a check by your compliance adviser. We are not lawyers.</p></div>
+  <div class="phase"><p class="small">Days 31 to 60</p><h3>Stop losing calls</h3>
+    <ul><li><b>Text back every missed call within a minute.</b> Your call-tracking tool may already do this. Ask them.</li><li><b>One phone plan for every button.</b> Track the two phone buttons that are not tracked today.</li><li><b>A homepage FAQ and a chat helper.</b> It uses only answers you approve and hands off to a person.</li></ul></div>
+  <div class="phase"><p class="small">Days 61 to 90</p><h3>Save staff time</h3>
+    <ul><li><b>A short insurance form with an automatic check.</b> People share less private data up front. Say a check is not a promise of payment.</li><li><b>Online booking with text reminders.</b> Fewer phone calls back and forth, and fewer missed visits.</li><li><b>Paperwork finished at home.</b> Less typing and fewer mistakes.</li><li><b>A monthly website check by Elliyeen.</b> It reads every page and your listings, then sends a short list. It also warns you before a certificate runs out.</li><li><b>One weekly report.</b> Calls, texts, forms and booked visits, by source.</li></ul></div>
+  <h3 style="margin:56px 0 16px;font-size:28px">How you will know it works</h3>
+  <p>We have no call or revenue numbers yet, so we are not guessing at savings. Count these for 30 days before and after each change. Then the savings are your own numbers.</p>
+  <div class="tw"><table class="chk">
+    <thead><tr><th>Count this</th><th>Where to find it</th></tr></thead>
+    <tbody>
+      <tr><td>Calls missed after 5&nbsp;PM</td><td>Call-tracking report</td></tr>
+      <tr><td>Minutes until a new person gets a reply</td><td>Call and text logs</td></tr>
+      <tr><td>Staff minutes spent on each new inquiry</td><td>A one-week sample from your team</td></tr>
+      <tr><td>Free assessments booked, and how many show up</td><td>Calendar or booking tool</td></tr>
+      <tr><td>Calls and forms by source</td><td>Call-tracking and form reports</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section class="page" id="questions"><div class="in">
+  <p class="eyebrow">Open items</p>
+  <h2>Questions for You</h2>
+  <p class="lede">We could not answer these from outside.</p>
+  <ul class="plainlist">
+    <li><b>Who manages your website and your search work?</b>Ask them about the hidden links, the mailbox addresses and the 599 blog pages.<a class="ref" href="evidence/#e15" >Proof E15</a><a class="ref" href="evidence/#e16" >Proof E16</a></li>
+    <li><b>Do you own compassionrecoverycenters.info?</b>It appears in emails on 14 pages. Tell us if getuniqcli.com is yours or a partner.<a class="ref" href="evidence/#e16" >Proof E16</a></li>
+    <li><b>What happens when someone answers the self-harm question &ldquo;nearly every day&rdquo;?</b>We could not see this from outside.<a class="ref" href="evidence/#e19" >Proof E19</a></li>
+    <li><b>Which phone line is answered at night?</b>This decides how we fix the call buttons.<a class="ref" href="evidence/#e4" >Proof E4</a></li>
+    <li><b>Are all nine Joint Commission sites part of your group?</b>None is on your Locations page. Valencia, Austin, Atlanta, Columbus, Phoenix and Jacksonville have no page on your site at all.<a class="ref" href="evidence/#e11" >Proof E11</a></li>
+    <li><b>Is &ldquo;Inner Minds Health&rdquo; your San Bernardino site?</b>It is the name on the Joint Commission record for that address.<a class="ref" href="evidence/#e11" >Proof E11</a></li>
+    <li><b>Which site runs the teen program for ages 12 to 17?</b>The Laguna Hills record lists no youth services.<a class="ref" href="evidence/#e11" >Proof E11</a></li>
+    <li><b>Does your care happen in person or &ldquo;entirely online&rdquo;?</b>Your site says both.<a class="ref" href="evidence/#e19" >Proof E19</a></li>
+    <li><b>What do &ldquo;35 years&rdquo; and &ldquo;15,000+ clients&rdquo; count?</b>Your About page says you started in 2019.<a class="ref" href="evidence/#e2" >Proof E2</a></li>
+  </ul>
+</div></section>
+
+<section class="page" id="method"><div class="in">
+  <p class="eyebrow">Method</p>
+  <h2>How We Checked</h2>
+  <p>We used a normal browser and public sources on November&nbsp;7, 2026. We sent no forms, made no calls and ran no attack tests.</p>
+  <ul class="plainlist">
+    <li><b>What we did</b>Read every page in your four sitemaps. Tested every link to a page outside the sitemap. Read the code of the free assessment. Opened the state certification list and the Joint Commission record. Looked up your email and domain records. Ran an accessibility scan on the homepage. Timed the homepage.</li>
+    <li><b>What we did not do</b>Complete or submit a form. Call a phone line. Test logins or plugin versions against known bugs. Review your server, backups or admin accounts. Check LegitScript status or your Google Business profiles. Estimate dollar losses.</li>
+    <li><b>Who did this review</b>One Elliyeen reviewer applied our audit framework. The full specialist-agent run, with 1&ndash;100 scores, has not been done yet.</li>
+  </ul>
+  <p style="margin-top:40px"><a class="cta" href="evidence/">Open the full evidence file</a></p>
+</div></section>
+
+<footer>
+  <div class="in">
+    <p class="eyebrow">Elliyeen</p>
+    <p>Confidential. Prepared for Josh Marquez of Compassion Recovery Centers.</p>
+    <p>This review covers public information seen on November&nbsp;7, 2026. The site may have changed since. It is not legal, medical or compliance advice. www.elliyeen.com</p>
+  </div>
+</footer>
+
+<button class="totop" id="totop" type="button" aria-label="Back to top" hidden>
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+<script>
+(function(){
+  var b=document.getElementById('totop');if(!b)return;
+  var on=false;
+  function update(){var show=(window.pageYOffset||document.documentElement.scrollTop)>500;if(show!==on){on=show;b.hidden=!show;}}
+  window.addEventListener('scroll',update,{passive:true});update();
+  b.addEventListener('click',function(){
+    var rm=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.scrollTo({top:0,behavior:rm?'auto':'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
